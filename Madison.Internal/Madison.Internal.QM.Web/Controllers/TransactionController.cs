@@ -114,6 +114,8 @@ namespace Madison.Internal.QM.Web.Controllers
                 transaction.LoanType = viewModel.Transaction.LoanType;
                 transaction.Endorsements = viewModel.Transaction.Endorsements;
 
+                db.SaveChanges();
+
                 return RedirectToAction("AffiliatedFees", new { transactionId = transaction.Id, loanAmount = viewModel.Transaction.LoanAmount } );    
             }
 
@@ -123,8 +125,7 @@ namespace Madison.Internal.QM.Web.Controllers
         public ActionResult AffiliatedFees(int transactionId, decimal loanAmount)
         {
             AffiliateFeesViewModel viewModel = new AffiliateFeesViewModel();
-            //viewModel.AffiliatedFee = TestModelBuilder.BuildAffiliatedFeesForTest();
-
+            viewModel.TransactionId = transactionId;
             viewModel.LoanAmount = loanAmount;
 
             return View("AffiliatedFees", viewModel);
@@ -137,20 +138,25 @@ namespace Madison.Internal.QM.Web.Controllers
             //TODO:  save the model
             if (ModelState.IsValid)
             {
-                //run the first cap calculation
+                Transaction transaction = db.Transactions.Find(viewModel.TransactionId);
+                transaction.AffiliatedFee = viewModel.AffiliatedFee;
+                db.Transactions.Add(transaction);
+                db.SaveChanges();
+
                 CalculationFacade facade = new CalculationFacade();
                 CapCalculationResult capCalcResult = facade.CalculateAffiliatedFees(viewModel, viewModel.LoanAmount);
 
                 TempData["CapCalcResult"] = capCalcResult;
-                return RedirectToAction("ShowAffiliatedFeesCalculation");
+                return RedirectToAction("ShowAffiliatedFeesCalculation", new { transactionId = transaction.Id });
             }
 
             return View(viewModel);
         }
 
-        public ActionResult ShowAffiliatedFeesCalculation()
+        public ActionResult ShowAffiliatedFeesCalculation(int transactionId)
         {
             CapCalculationResult capCalcResult = TempData["CapCalcResult"] as CapCalculationResult;
+            capCalcResult.TransactionId = transactionId;
 
             return View("AffiliatedFeesCalculation", capCalcResult);
         }
@@ -158,15 +164,14 @@ namespace Madison.Internal.QM.Web.Controllers
         [HttpPost]
         public ActionResult ShowAffiliatedFeesCalculation(CapCalculationResult capCalculationResult)
         {
-            return RedirectToAction("PriorTransactionInfo");
+            return RedirectToAction("PriorTransactionInfo", new { capCalculationResult.TransactionId });
         }
 
-        public ActionResult PriorTransactionInfo()
+        public ActionResult PriorTransactionInfo(int transactionId)
         {
             TransactionViewModel viewModel = new TransactionViewModel();
-
-            //viewModel.Transaction = TestModelBuilder.BuildTransactionForTest();
-
+            viewModel.TransactionId = transactionId;
+            
             return View(viewModel);
         }
         
@@ -175,6 +180,26 @@ namespace Madison.Internal.QM.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                Transaction transaction = db.Transactions.Find(viewModel.TransactionId);
+                transaction.BuyerPriorLenderPolicyAmount = viewModel.Transaction.BuyerPriorLenderPolicyAmount;
+                transaction.BuyerPriorLenderPolicyAvailableAsProof = viewModel.Transaction.BuyerPriorLenderPolicyAvailableAsProof;
+                transaction.BuyerPriorLenderPolicyDate = viewModel.Transaction.BuyerPriorLenderPolicyDate;
+                transaction.BuyerPriorOwnerPolicyAmount = viewModel.Transaction.BuyerPriorOwnerPolicyAmount;
+                transaction.BuyerPriorOwnerPolicyAvailableAsProof = viewModel.Transaction.BuyerPriorOwnerPolicyAvailableAsProof;
+                transaction.BuyerPriorOwnerPolicyDate = viewModel.Transaction.BuyerPriorOwnerPolicyDate;
+                transaction.BuyerUnpaidBalance = viewModel.Transaction.BuyerUnpaidBalance;
+                transaction.BuyerUnpaidBalanceOfPriorLoan = viewModel.Transaction.BuyerUnpaidBalanceOfPriorLoan;
+
+                transaction.SellerPriorLenderPolicyAmount = viewModel.Transaction.SellerPriorLenderPolicyAmount;
+                transaction.SellerPriorLenderPolicyAvailableAsProof = viewModel.Transaction.SellerPriorLenderPolicyAvailableAsProof;
+                transaction.SellerPriorLenderPolicyDate = viewModel.Transaction.SellerPriorLenderPolicyDate;
+                transaction.SellerPriorOwnerPolicyAmount = viewModel.Transaction.SellerPriorOwnerPolicyAmount;
+                transaction.SellerPriorOwnerPolicyAvailableAsProof = viewModel.Transaction.SellerPriorOwnerPolicyAvailableAsProof;
+                transaction.SellerPriorOwnerPolicyDate = viewModel.Transaction.SellerPriorOwnerPolicyDate;
+                transaction.SellerUnpaidBalance = viewModel.Transaction.SellerUnpaidBalance;
+                transaction.SellerUnpaidBalanceOfPriorLoan = viewModel.Transaction.SellerUnpaidBalanceOfPriorLoan;
+                db.Transactions.Add(transaction);
+
                 //scratch code to get a "FAIL" on the assessment complete page.
                 if (viewModel.Transaction.SellerUnpaidBalance == 100000)
                 {
@@ -185,13 +210,13 @@ namespace Madison.Internal.QM.Web.Controllers
                     TempData["PassedQM"] = true;
                 }
 
-                return RedirectToAction("AssessmentComplete");
+                return RedirectToAction("AssessmentComplete", new { transactionId = transaction.Id });
             }
 
             return View(viewModel);
         }
 
-        public ActionResult AssessmentComplete()
+        public ActionResult AssessmentComplete(int transactionId)
         {
             AssessmentCompleteViewModel viewModel = new AssessmentCompleteViewModel();
             StringBuilder messageBuilder = new StringBuilder();

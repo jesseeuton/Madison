@@ -10,6 +10,8 @@ namespace Madison.Internal.QM.Business
     {
         public AffiliatedFeesCalculationResult AffiliatedFeesResult { get; set; }
         public PriorFeesResult PriorFeesResult { get; set; }
+
+        public int TransactionId { get; set; }
         public bool UnderCap { get; set; }
 
         [DataType(DataType.Currency)]

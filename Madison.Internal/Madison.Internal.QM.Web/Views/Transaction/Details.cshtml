@@ -1,0 +1,64 @@
+﻿@model Madison.Internal.QM.Web.Models.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Transaction</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LoanAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LoanAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriorLenderPolicyDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriorLenderPolicyDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriorLenderPolicyAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriorLenderPolicyAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UnpaidBalanceOfPriorLoan)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnpaidBalanceOfPriorLoan)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriorOwnerPolicyDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriorOwnerPolicyDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriorOwnerPolicyAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriorOwnerPolicyAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UnpaidBalance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnpaidBalance)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

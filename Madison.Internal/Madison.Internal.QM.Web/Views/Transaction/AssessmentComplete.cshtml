@@ -1,0 +1,30 @@
+﻿@model Madison.Internal.QM.Web.ViewModels.AssessmentCompleteViewModel
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="jumbotron">
+        <h1>Assessment Complete</h1>
+        
+        <p class="lead">@Model.Message</p>
+        
+        @if (Model.Passed)
+        {
+            @Html.ActionLink("Send To Affiliate", "Index", "Home", null, new { @class="btn btn-large btn-success" })
+        }
+        else
+        {
+            @Html.ActionLink("Send To Madison", "Index", "Home", null, new { @class="btn btn-large btn-success" })    
+        }
+            
+        
+    </div>
+    
+    <div>
+        @Html.ActionLink("Upload 1003", "Index", "Home")
+    </div>
+    <div>
+        @Html.ActionLink("Email the analysis report to me.", "Index", "Home")
+    </div>
+}  

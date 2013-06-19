@@ -1,0 +1,59 @@
+﻿@model Madison.Internal.QM.Web.ViewModels.TransactionViewModel
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend class="lead">Transaction Info</legend>
+
+        <div>
+            @Html.LabelFor(model => model.Transaction.TransactionType.Name)
+        </div>
+        <div>
+            @Html.DropDownListFor(model => model.Transaction.TransactionType.Id, new SelectList(Model.TransactionTypes, "Id", "Name"))
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.LoanType.Name)
+        </div>
+        <div>
+            @Html.DropDownListFor(model => model.Transaction.LoanType.Id, new SelectList(Model.LoanTypes, "Id", "Name"))
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.InterestType.Name)
+        </div>
+        <div>
+            @Html.DropDownListFor(model => model.Transaction.InterestType.Id, new SelectList(Model.InterestTypes, "Id", "Name"))
+        </div>
+        <div class="editor-label">
+            <label for="categories">Endorsements</label>
+        </div>
+        <div class="editor-field">
+            @foreach(var endorsement in Model.Endorsements) {
+
+            <label class="checkbox">
+                <input type="checkbox" name="categories" value="@endorsement.Id" checked="@endorsement.DefaultSelect"> @endorsement.Name
+            </label>
+
+            }
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.LoanAmount)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.LoanAmount)
+            @Html.ValidationMessageFor(model => model.Transaction.LoanAmount)
+        </div>
+        <p>
+            <input id="btnNext" type="submit" value="Next" class="btn btn-large btn-success" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")   *@
+
+    <script type="text/javascript">
+        
+    </script>
+}    

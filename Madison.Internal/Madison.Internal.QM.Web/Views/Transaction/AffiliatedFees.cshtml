@@ -1,0 +1,77 @@
+﻿@model Madison.Internal.QM.Web.ViewModels.AffiliateFeesViewModel
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend class="lead">Affiliated Fees</legend>
+        <div>
+            Is title affiliated?  If Yes, What is the total of their settlement fees?
+            @*@Html.LabelFor(model => model.AffiliatedFee.TotalSettlementFee)*@
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.TotalSettlementFee)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.TotalSettlementFee)
+        </div>
+        <div>
+            Is appraisal affiliated?  If yes, what is the appraisal fee?
+            @*@Html.LabelFor(model => model.AffiliatedFee.AppraisalFee)*@
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.AppraisalFee)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.AppraisalFee)
+        </div>
+        <div>
+            Is Credit affiliated?  If yes, what is the credit fee?
+            @*@Html.LabelFor(model => model.AffiliatedFee.CreditFee)*@
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.CreditFee)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.CreditFee)
+        </div>
+        <div>
+            Is the loan originator a direct employee of the lender?  If no, what is the total mortgage originator compensation amount?
+            @*@Html.LabelFor(model => model.AffiliatedFee.MortageOriginatorCompensationAmount)*@
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.MortageOriginatorCompensationAmount)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.MortageOriginatorCompensationAmount)
+        </div>
+        <div>
+            Is Survey Affiliated?  If yes, what is the survey fee?
+            @*@Html.LabelFor(model => model.AffiliatedFee.SurveyFee)*@
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.SurveyFee)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.SurveyFee)
+        </div>
+        <div>
+            Is notary affiliated?  If yes, what is the notary fee?
+            @*@Html.LabelFor(model => model.AffiliatedFee.NotaryFee)*@
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.NotaryFee)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.NotaryFee)
+        </div>
+        <div>
+            Is Inspection Affiliated?  If yes, what is the inspection fee?
+            @*@Html.LabelFor(model => model.AffiliatedFee.InspectionFee)*@
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.InspectionFee)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.InspectionFee)
+        </div>
+        <div>
+            Total Lender Fees
+            @*@Html.LabelFor(model => model.AffiliatedFee.LenderFee)*@
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.LenderFee)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.LenderFee)
+        </div>
+        <p>
+            <input type="submit" id="btnNext" value="Next" class="btn btn-large btn-success" />
+        </p>
+    </fieldset>
+}  

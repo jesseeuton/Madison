@@ -1,0 +1,47 @@
+﻿@model Madison.Internal.QM.Business.CapCalculationResult
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend class="lead">Affiliated Fees Calculation Result</legend>
+
+        <div>
+            Cap:&nbsp;&nbsp;<b>@string.Format("${0:N2}", Model.CapAmount)</b>
+        </div>
+        <div>
+            
+            Amount Remaining:&nbsp;&nbsp;@string.Format("${0:N2}", Model.AmountRemainingUnderCap);
+        </div>
+        <br /><br />
+
+        @foreach (var result in Model.AffiliatedFeesResult.Summary)
+        {
+            <p>@result</p>
+        }
+        
+            @if (Model.UnderCap)
+            {
+                <p>
+                    Result:&nbsp;&nbsp;&nbsp;<b>PASS</b> prior to title premium cap calculation.
+                </p>
+                <p>
+                    We have identified so far that your cap allowance has @string.Format("${0:N2}", Model.AmountRemainingUnderCap) remaining. Please enter as much data as possible for us to calculate the best title insurance premium result for you to send to your affiliate if caps can be maintained.
+                </p>
+                <p>
+                    <input type="submit" id="btnNext" value="Continue" class="btn btn-large btn-success" />
+                </p>
+            }
+            else
+            {
+                <p>
+                    Result:&nbsp;&nbsp;&nbsp;<b>FAIL</b> prior to title premium cap calculation
+                </p>
+                <p>
+                    @Html.ActionLink("Send To Backup", "Index", "Home", null, new { @class="btn btn-large btn-success" })
+                    
+                </p>    
+            }
+    </fieldset>
+}  

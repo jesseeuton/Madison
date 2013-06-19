@@ -1,0 +1,66 @@
+﻿@model Madison.Internal.QM.Web.ViewModels.PersonViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend class="lead">Personal Info</legend>
+
+        <div >
+            @Html.LabelFor(model => model.Person.FirstName)
+        </div>
+        <div >
+            @Html.EditorFor(model => model.Person.FirstName)
+            @Html.ValidationMessageFor(model => model.Person.FirstName)
+        </div>
+
+        <div >
+            @Html.LabelFor(model => model.Person.LastName)
+        </div>
+        <div >
+            @Html.EditorFor(model => model.Person.LastName)
+            @Html.ValidationMessageFor(model => model.Person.LastName)
+        </div>
+
+        <div >
+            @Html.LabelFor(model => model.Person.CompanyName)
+        </div>
+        <div >
+            @Html.EditorFor(model => model.Person.CompanyName)
+            @Html.ValidationMessageFor(model => model.Person.CompanyName)
+        </div>
+
+        <div >
+            @Html.LabelFor(model => model.Person.Relationship)
+        </div>
+        <div >
+            @Html.DropDownListFor(rel => rel.Person.Relationship.Id, new SelectList(Model.CompanyRelationships, "Id", "Name"))
+        </div>
+
+        <div >
+            @Html.LabelFor(model => model.Person.EmailAddress)
+        </div>
+        <div >
+            @Html.EditorFor(model => model.Person.EmailAddress)
+            @Html.ValidationMessageFor(model => model.Person.EmailAddress)
+        </div>
+
+        <div >
+            @Html.LabelFor(model => model.Person.Phone)
+        </div>
+        <div >
+            @Html.EditorFor(model => model.Person.Phone)
+            @Html.ValidationMessageFor(model => model.Person.Phone)
+        </div>
+    </fieldset>
+        
+    <input type="submit" value="Next" class = "btn btn-large btn-success" />
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}
+
+

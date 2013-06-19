@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://orders.madisonsettlements.com/reswarewebservices/estimatefeesservice.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+  <xs:element name="EstimateFees">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="theClientID" type="xs:int" />
+        <xs:element minOccurs="0" name="theOfficeID" type="xs:int" />
+        <xs:element minOccurs="0" name="theTransactionTypeID" type="xs:int" />
+        <xs:element minOccurs="0" name="theProductTypeID" type="xs:int" />
+        <xs:element minOccurs="0" name="theCity" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="theCounty" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="theState" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="theLoanAmount" type="xs:decimal" />
+        <xs:element minOccurs="0" name="theSalesPrice" type="xs:decimal" />
+        <xs:element minOccurs="0" name="theOriginalDebtAmount" type="xs:decimal" />
+        <xs:element minOccurs="0" name="theUnpaidPrincipalAmount" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EstimateFeesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="EstimateFeesResult" nillable="true" type="q1:EstimateFeesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

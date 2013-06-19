@@ -1,0 +1,110 @@
+﻿@model Madison.Internal.QM.Web.ViewModels.TransactionViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+
+        <p class="lead"><b>Buyer/Borrower:</b></p>
+        <div>
+            @Html.LabelFor(model => model.Transaction.BuyerPriorLenderPolicyDate)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.BuyerPriorLenderPolicyDate)
+            @Html.ValidationMessageFor(model => model.Transaction.BuyerPriorLenderPolicyDate)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.BuyerPriorLenderPolicyAmount)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.BuyerPriorLenderPolicyAmount)
+            @Html.ValidationMessageFor(model => model.Transaction.BuyerPriorLenderPolicyAmount)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.BuyerPriorOwnerPolicyDate)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.BuyerPriorOwnerPolicyDate)
+            @Html.ValidationMessageFor(model => model.Transaction.BuyerPriorOwnerPolicyDate)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.BuyerPriorOwnerPolicyAmount)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.BuyerPriorOwnerPolicyAmount)
+            @Html.ValidationMessageFor(model => model.Transaction.BuyerPriorOwnerPolicyAmount)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.BuyerUnpaidBalance)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.BuyerUnpaidBalance)
+            @Html.ValidationMessageFor(model => model.Transaction.BuyerUnpaidBalance)
+        </div>
+        <div>
+            @Html.CheckBoxFor(model => model.Transaction.BuyerPriorLenderPolicyAvailableAsProof)&nbsp;Prior Lender Policy Available As Proof
+            @*@Html.LabelFor(model => model.Transaction.BuyerPriorLenderPolicyAvailableAsProof)&nbsp;&nbsp;@Html.CheckBoxFor(model => model.Transaction.BuyerPriorLenderPolicyAvailableAsProof)*@
+        </div>
+        <div>
+            @Html.CheckBoxFor(model => model.Transaction.BuyerPriorOwnerPolicyAvailableAsProof)&nbsp;Prior Owner Policy Is Available As Proof
+        </div>
+        <br />
+        <p class="lead"><b>Seller:</b></p>
+        <div>
+            @Html.LabelFor(model => model.Transaction.SellerPriorLenderPolicyDate)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.SellerPriorLenderPolicyDate)
+            @Html.ValidationMessageFor(model => model.Transaction.SellerPriorLenderPolicyDate)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.SellerPriorLenderPolicyAmount)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.SellerPriorLenderPolicyAmount)
+            @Html.ValidationMessageFor(model => model.Transaction.SellerPriorLenderPolicyAmount)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.SellerPriorOwnerPolicyDate)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.SellerPriorOwnerPolicyDate)
+            @Html.ValidationMessageFor(model => model.Transaction.SellerPriorOwnerPolicyDate)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.SellerPriorOwnerPolicyAmount)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.SellerPriorOwnerPolicyAmount)
+            @Html.ValidationMessageFor(model => model.Transaction.SellerPriorOwnerPolicyAmount)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.SellerUnpaidBalance)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.SellerUnpaidBalance)
+            @Html.ValidationMessageFor(model => model.Transaction.SellerUnpaidBalance)
+        </div>
+        <div>
+            @Html.CheckBoxFor(model => model.Transaction.SellerPriorLenderPolicyAvailableAsProof)&nbsp;Prior Lender Policy Is Available As Proof
+        </div>
+        <div>
+            @Html.CheckBoxFor(model => model.Transaction.SellerPriorOwnerPolicyAvailableAsProof)&nbsp;Prior Owner Policy Is Available As Proof
+        </div>
+    </fieldset>
+    <br />   
+    <p>
+        <input id="btnNext" type="submit" value="Finish" class="btn btn-large btn-success" />
+    </p>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")   *@
+
+    <script type="text/javascript">
+        
+    </script>
+}    

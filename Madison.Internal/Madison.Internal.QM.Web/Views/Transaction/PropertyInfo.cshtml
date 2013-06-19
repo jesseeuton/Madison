@@ -1,0 +1,88 @@
+﻿@model Madison.Internal.QM.Web.ViewModels.BorrowerViewModel
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend class="lead">Property Info</legend>
+
+        
+        <div>
+            @Html.LabelFor(model => model.Borrower.FirstName)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Borrower.FirstName)
+            @Html.ValidationMessageFor(model => model.Borrower.FirstName)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Borrower.LastName)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Borrower.LastName)
+            @Html.ValidationMessageFor(model => model.Borrower.LastName)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Property.PropertyType)
+        </div>
+        <div>
+            @Html.DropDownListFor(model => model.Property.PropertyType.Id, new SelectList(Model.PropertyTypes, "Id", "Name"))
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Property.Address1)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Property.Address1)
+            @Html.ValidationMessageFor(model => model.Property.Address1)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Property.Address2)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Property.Address2)
+            @Html.ValidationMessageFor(model => model.Property.Address2)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Property.City)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Property.City)
+            @Html.ValidationMessageFor(model => model.Property.City)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Property.County)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Property.County)
+            @Html.ValidationMessageFor(model => model.Property.County)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Property.State)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Property.State)
+            @Html.ValidationMessageFor(model => model.Property.State)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Property.Zip)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Property.Zip)
+            @Html.ValidationMessageFor(model => model.Property.Zip)
+        </div>
+
+        <p>
+            <input id="btnNext" type="submit" value="Next" class="btn btn-large btn-success" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")   *@
+}    
+

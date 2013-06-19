@@ -1,0 +1,86 @@
+﻿@model Madison.Internal.QM.Web.Models.Transaction
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Transaction</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LoanAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LoanAmount)
+            @Html.ValidationMessageFor(model => model.LoanAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriorLenderPolicyDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriorLenderPolicyDate)
+            @Html.ValidationMessageFor(model => model.PriorLenderPolicyDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriorLenderPolicyAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriorLenderPolicyAmount)
+            @Html.ValidationMessageFor(model => model.PriorLenderPolicyAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UnpaidBalanceOfPriorLoan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UnpaidBalanceOfPriorLoan)
+            @Html.ValidationMessageFor(model => model.UnpaidBalanceOfPriorLoan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriorOwnerPolicyDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriorOwnerPolicyDate)
+            @Html.ValidationMessageFor(model => model.PriorOwnerPolicyDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriorOwnerPolicyAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriorOwnerPolicyAmount)
+            @Html.ValidationMessageFor(model => model.PriorOwnerPolicyAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UnpaidBalance)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UnpaidBalance)
+            @Html.ValidationMessageFor(model => model.UnpaidBalance)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

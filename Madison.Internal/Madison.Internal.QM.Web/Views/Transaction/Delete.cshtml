@@ -1,0 +1,68 @@
+﻿@model Madison.Internal.QM.Web.Models.Transaction
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Transaction</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LoanAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LoanAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriorLenderPolicyDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriorLenderPolicyDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriorLenderPolicyAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriorLenderPolicyAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UnpaidBalanceOfPriorLoan)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnpaidBalanceOfPriorLoan)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriorOwnerPolicyDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriorOwnerPolicyDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriorOwnerPolicyAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriorOwnerPolicyAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UnpaidBalance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnpaidBalance)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

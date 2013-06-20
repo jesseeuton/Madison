@@ -79,10 +79,9 @@ namespace Madison.Internal.QM.Web.Controllers
                 Transaction transaction = db.Transactions.Find(viewModel.TransactionId);
                 transaction.Borrower = viewModel.Borrower;
                 transaction.Property = viewModel.Property;
-                db.Transactions.Add(transaction);
                 db.SaveChanges();
 
-                return RedirectToAction("TransactionInfo", new { transactionId = transaction.Person.Id });
+                return RedirectToAction("TransactionInfo", new { transactionId = transaction.Id });
             }
 
             return View(viewModel);
@@ -140,7 +139,7 @@ namespace Madison.Internal.QM.Web.Controllers
             {
                 Transaction transaction = db.Transactions.Find(viewModel.TransactionId);
                 transaction.AffiliatedFee = viewModel.AffiliatedFee;
-                db.Transactions.Add(transaction);
+                
                 db.SaveChanges();
 
                 CalculationFacade facade = new CalculationFacade();
@@ -198,7 +197,8 @@ namespace Madison.Internal.QM.Web.Controllers
                 transaction.SellerPriorOwnerPolicyDate = viewModel.Transaction.SellerPriorOwnerPolicyDate;
                 transaction.SellerUnpaidBalance = viewModel.Transaction.SellerUnpaidBalance;
                 transaction.SellerUnpaidBalanceOfPriorLoan = viewModel.Transaction.SellerUnpaidBalanceOfPriorLoan;
-                db.Transactions.Add(transaction);
+
+                db.SaveChanges();
 
                 //scratch code to get a "FAIL" on the assessment complete page.
                 if (viewModel.Transaction.SellerUnpaidBalance == 100000)

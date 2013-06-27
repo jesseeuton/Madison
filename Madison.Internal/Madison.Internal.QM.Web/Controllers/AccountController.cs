@@ -19,6 +19,26 @@ namespace Madison.Internal.QM.Web.Controllers
     {
         //
         // GET: /Account/Login
+        [AllowAnonymous]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(LoginModel model, string returnUrl)
+        {
+            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            {
+                return RedirectToLocal(returnUrl);
+            }
+
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "Email or Password is incorrect");
+            return View(model);
+        }
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)

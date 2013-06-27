@@ -5,13 +5,15 @@
     Layout = "~/Views/shared/_BootstrapLayout.narrow.cshtml";
 }
 
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+
       <div class="jumbotron">
         <h1>QM Assessment</h1>
         <p class="lead">Brought to you by the Madison Settlement Services team.</p>
-        @*@Html.ActionLink("Begin", "PersonInfo", "Transaction", null, new { @class="btn btn-large btn-success" })*@
       </div>
 
-    @Html.Partial("~/Views/Account/_LoginPartial.cshtml")
+    @Html.Partial("_LoginPartial")
 
       <hr>
 
@@ -40,3 +42,4 @@
 
         </div>
       </div>
+}

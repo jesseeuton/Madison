@@ -8,14 +8,16 @@ using Madison.ResWare.Domain;
 
 namespace Madison.ResWare.Service
 {
-    public class EstimateFeesServiceFacade
+    public class EstimateFeesServiceFacade : IEstimateFeesServiceFacade
     {
+        private const int RESPONSE_CODE_SUCCESS = 0;
+
         public EstimateFeesServiceFacade() { }
 
-        public EstimateFeesService.EstimateFeesResponse GetFeeQuote(FeeEstimateRequest feeEstimate) 
+        public FeeEstimateResult GetFeeEstimate(FeeEstimateRequest feeEstimate)
         {
             EstimateFeesService.EstimateFeesServiceClient client = new EstimateFeesService.EstimateFeesServiceClient();
-            return client.EstimateFees(
+            EstimateFeesService.EstimateFeesResponse response = client.EstimateFees(
                 feeEstimate.ClientID,
                 feeEstimate.OfficeID,
                 feeEstimate.TransactionTypeID,
@@ -27,6 +29,18 @@ namespace Madison.ResWare.Service
                 feeEstimate.SalesPrice,
                 feeEstimate.OriginalDebtAmount,
                 feeEstimate.UnpaidPrincipalAmount);
+
+            //for now assume we got a response.  
+            //TODO:  Handle any response and bubble back
+            if (response.ResponseCode != RESPONSE_CODE_SUCCESS)
+            {
+                return new FeeEstimateResult(null, false, response.Message);
+            }
+
+            IList<Fee> fees = new List<Fee>();
+            response.HUDFees.ToList().ForEach(fee => fees.Add(new Fee(fee.Amount, fee.HUDLine, fee.HUDLineDescription)));
+
+            return new FeeEstimateResult(fees, true, string.Empty);
         }
 
     }

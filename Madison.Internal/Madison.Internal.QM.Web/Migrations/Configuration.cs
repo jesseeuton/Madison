@@ -4,7 +4,6 @@ namespace Madison.Internal.QM.Web.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
     using Madison.Internal.QM.Web.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Madison.Internal.QM.Web.Models.TransactionContext>
@@ -27,6 +26,8 @@ namespace Madison.Internal.QM.Web.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
+            //context.UserProfiles.AddOrUpdate(p => p.Username, 
+            //    new UserProfile() { FirstName="Cynthia", comp
 
             context.CompanyRelationships.AddOrUpdate(p => p.Name,
                 new CompanyRelationship { Name="Manager" },

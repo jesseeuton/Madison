@@ -27,9 +27,15 @@ namespace Madison.ResWare.Domain
         {
             decimal total = 0;
 
-            if (Fees != null)
-                Fees.ToList().ForEach(fee => total += fee.Amount);
 
+            //subtract the 1200's from the calculation
+            Fees.ToList().ForEach(fee => 
+                    {
+                        if (!fee.HudLine.StartsWith("12"))
+                        {
+                            total += total + fee.Amount;
+                        }
+                    });
             return total;
         }
 

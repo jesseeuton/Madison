@@ -25,11 +25,11 @@ namespace Madison.Internal.QM.Web.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
+                Database.SetInitializer<TransactionContext>(null);
 
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new TransactionContext())
                     {
                         if (!context.Database.Exists())
                         {
@@ -42,7 +42,7 @@ namespace Madison.Internal.QM.Web.Filters
                 }
                 catch (Exception ex)
                 {
-                    throw new InvalidOperationException("The ASP.NET Simple Membership database could not be initialized. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588", ex);
+                    throw new InvalidOperationException("The Membership database could not be initialized. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588", ex);
                 }
             }
         }

@@ -259,6 +259,14 @@
     <Compile Include="Migrations\201306190149513_workflowchange.Designer.cs">
       <DependentUpon>201306190149513_workflowchange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201306280338492_userprofile.cs" />
+    <Compile Include="Migrations\201306280338492_userprofile.Designer.cs">
+      <DependentUpon>201306280338492_userprofile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306280403328_userprofileupdates.cs" />
+    <Compile Include="Migrations\201306280403328_userprofileupdates.Designer.cs">
+      <DependentUpon>201306280403328_userprofileupdates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AffiliatedFees.cs" />
@@ -266,7 +274,6 @@
     <Compile Include="Models\CompanyRelationship.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Endorsement.cs" />
-    <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Models\InterestType.cs" />
     <Compile Include="Models\LoanType.cs" />
     <Compile Include="Models\Person.cs" />
@@ -477,6 +484,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201306190149513_workflowchange.resx">
       <DependentUpon>201306190149513_workflowchange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306280338492_userprofile.resx">
+      <DependentUpon>201306280338492_userprofile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306280403328_userprofileupdates.resx">
+      <DependentUpon>201306280403328_userprofileupdates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

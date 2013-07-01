@@ -13,6 +13,7 @@ using Madison.Internal.QM.Business;
 
 namespace Madison.Internal.QM.Web.Controllers
 {
+    [Authorize]
     public class TransactionController : Controller
     {
         private TransactionContext db = new TransactionContext();
@@ -27,46 +28,37 @@ namespace Madison.Internal.QM.Web.Controllers
             return View();
         }
 
-        public ActionResult PersonInfo()
+        //public ActionResult PersonInfo()
+        //{
+        //    PersonViewModel personViewModel = new PersonViewModel();
+
+        //    personViewModel.CompanyRelationships = db.CompanyRelationships.ToList();
+
+        //    return View("PersonInfo", personViewModel);
+        //}
+
+        //[HttpPost]
+        //public ActionResult PersonInfo(PersonViewModel viewModel)
+        //{
+        //    //TODO:  Save the view model
+        //    Transaction transaction = new Transaction();
+        //    if (ModelState.IsValid)
+        //    {
+        //        transaction.Person = viewModel.Person;
+        //        db.Transactions.Add(transaction);
+        //        db.SaveChanges();
+
+        //        return RedirectToAction("PropertyInfo", new { transactionId = transaction.Id});
+        //    }
+
+        //    return View(viewModel);
+        //}
+
+        public ActionResult PropertyInfo()
         {
-            PersonViewModel personViewModel = new PersonViewModel();
-
-            personViewModel.CompanyRelationships = db.CompanyRelationships.ToList();
-
-            //PersonViewModel viewModel = new PersonViewModel();
-            //viewModel.CompanyRelationships = db.CompanyRelationships.ToList();
-            //viewModel.Person = TestModelBuilder.BuildPersonForTest();
-
-            return View("PersonInfo", personViewModel);
-        }
-
-        [HttpPost]
-        public ActionResult PersonInfo(PersonViewModel viewModel)
-        {
-            //TODO:  Save the view model
-            Transaction transaction = new Transaction();
-            if (ModelState.IsValid)
-            {
-                transaction.Person = viewModel.Person;
-                db.Transactions.Add(transaction);
-                db.SaveChanges();
-
-                return RedirectToAction("PropertyInfo", new { transactionId = transaction.Id});
-            }
-
-            return View(viewModel);
-        }
-
-        public ActionResult PropertyInfo(int transactionId)
-        {
-            BorrowerViewModel viewModel = new BorrowerViewModel() { TransactionId = transactionId };
+            BorrowerViewModel viewModel = new BorrowerViewModel();
             
             viewModel.PropertyTypes = db.PropertyTypes.ToList();
-
-            //test code
-            //viewModel.Property = TestModelBuilder.BuildPropertyInfoForTest();
-            //viewModel.Borrower = TestModelBuilder.BuildBorrowerForTest();
-            //test code
 
             return View("PropertyInfo", viewModel);
         }
@@ -76,9 +68,11 @@ namespace Madison.Internal.QM.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Transaction transaction = db.Transactions.Find(viewModel.TransactionId);
+                Transaction transaction = new Transaction();
                 transaction.Borrower = viewModel.Borrower;
                 transaction.Property = viewModel.Property;
+
+                db.Transactions.Add(transaction);
                 db.SaveChanges();
 
                 return RedirectToAction("TransactionInfo", new { transactionId = transaction.Id });
@@ -95,8 +89,6 @@ namespace Madison.Internal.QM.Web.Controllers
             viewModel.LoanTypes = db.LoanTypes.ToList();
             viewModel.TransactionTypes = db.TransactionTypes.ToList();
             viewModel.TransactionId = transactionId;
-
-            //viewModel.Transaction = TestModelBuilder.BuildTransactionForTest();
 
             return View("TransactionInfo", viewModel);
         }
@@ -200,15 +192,8 @@ namespace Madison.Internal.QM.Web.Controllers
 
                 db.SaveChanges();
 
-                //scratch code to get a "FAIL" on the assessment complete page.
-                if (viewModel.Transaction.SellerUnpaidBalance == 100000)
-                {
-                    TempData["PassedQM"] = false;
-                }
-                else
-                {
-                    TempData["PassedQM"] = true;
-                }
+                //Call ResWare Fee Service to do the final calc
+
 
                 return RedirectToAction("AssessmentComplete", new { transactionId = transaction.Id });
             }

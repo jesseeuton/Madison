@@ -14,7 +14,7 @@ namespace Madison.ResWare.Service
 
         public EstimateFeesServiceFacade() { }
 
-        public FeeEstimateResult GetFeeEstimate(FeeEstimateRequest feeEstimate)
+        public EstimateFeesService.EstimateFeesResponse GetFeeEstimate(FeeEstimateRequest feeEstimate)
         {
             EstimateFeesService.EstimateFeesServiceClient client = new EstimateFeesService.EstimateFeesServiceClient();
             EstimateFeesService.EstimateFeesResponse response = client.EstimateFees(
@@ -30,17 +30,19 @@ namespace Madison.ResWare.Service
                 feeEstimate.OriginalDebtAmount,
                 feeEstimate.UnpaidPrincipalAmount);
 
-            //for now assume we got a response.  
-            //TODO:  Handle any response and bubble back
-            if (response.ResponseCode != RESPONSE_CODE_SUCCESS)
-            {
-                return new FeeEstimateResult(null, false, response.Message);
-            }
+            return response;
 
-            IList<Fee> fees = new List<Fee>();
-            response.HUDFees.ToList().ForEach(fee => fees.Add(new Fee(fee.Amount, fee.HUDLine, fee.HUDLineDescription)));
+            ////for now assume we got a response.  
+            ////TODO:  Handle any response and bubble back
+            //if (response.ResponseCode != RESPONSE_CODE_SUCCESS)
+            //{
+            //    return new FeeEstimateResult(null, false, response.Message);
+            //}
 
-            return new FeeEstimateResult(fees, true, string.Empty);
+            //IList<Fee> fees = new List<Fee>();
+            //response.HUDFees.ToList().ForEach(fee => fees.Add(new Fee(fee.Amount, fee.HUDLine, fee.HUDLineDescription)));
+
+            //return new FeeEstimateResult(fees, true, string.Empty);
         }
 
     }

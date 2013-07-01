@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Madison.Internal.QM.Web.ViewModels;
+using Madison.Internal.QM.Web.Models;
  
 namespace Madison.Internal.QM.Business
 {
@@ -17,27 +18,26 @@ namespace Madison.Internal.QM.Business
 
         public CapCalculationResult CalculateAffiliatedFees(AffiliateFeesViewModel affiliatedFees, decimal loanAmount)
         {
-            AffiliatedFeesCalculationResult result = TotalAffiliatedFees(affiliatedFees);
-            result.LoanAmount = loanAmount;
-            CapCalculationResult capCalculationResult = CalculateCap(result);
+            CapCalculationResultInitial initial = TotalAffiliatedFees(affiliatedFees);
+            CapCalculationResult capCalculationResult = CalculateInitial(initial, loanAmount);
 
             return capCalculationResult;
         }
 
-        public CapCalculationResult CalculateCap(AffiliatedFeesCalculationResult affiliatedFeesResult)
+        public CapCalculationResult CalculateInitial(CapCalculationResultInitial affiliatedFeesResult, decimal loanAmount)
         {
             CapCalculationResult capCalculation = new CapCalculationResult();
-            capCalculation.AffiliatedFeesResult = affiliatedFeesResult;
-            ICapCalculator calculator = CapCalculatorFactory.GetCapCalculator(affiliatedFeesResult.LoanAmount);
+            capCalculation.CapCalculationResultInitial = affiliatedFeesResult;
+            ICapCalculator calculator = CapCalculatorFactory.GetCapCalculator(loanAmount);
 
-            calculator.Calculate(capCalculation);
+            calculator.Calculate(capCalculation, loanAmount);
 
             return capCalculation;
         }
 
-        public AffiliatedFeesCalculationResult TotalAffiliatedFees(AffiliateFeesViewModel affiliatedFees)
+        private CapCalculationResultInitial TotalAffiliatedFees(AffiliateFeesViewModel affiliatedFees)
         {
-            AffiliatedFeesCalculationResult result = new AffiliatedFeesCalculationResult();
+            CapCalculationResultInitial result = new CapCalculationResultInitial();
 
             if (IsValidField(affiliatedFees.AffiliatedFee.AppraisalFee))
             {

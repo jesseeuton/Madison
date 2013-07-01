@@ -1,4 +1,4 @@
-﻿@model Madison.Internal.QM.Business.CapCalculationResult
+﻿@model Madison.Internal.QM.Web.ViewModels.CapCalculationResultViewModel
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -8,26 +8,26 @@
         <legend class="lead">Affiliated Fees Calculation Result</legend>
 
         <div>
-            Cap:&nbsp;&nbsp;<b>@string.Format("${0:N2}", Model.CapAmount)</b>
+            Cap:&nbsp;&nbsp;<b>@string.Format("${0:N2}", Model.CapCalculationResult.CapAmount)</b>
         </div>
         <div>
             
-            Amount Remaining:&nbsp;&nbsp;@string.Format("${0:N2}", Model.AmountRemainingUnderCap);
+            Amount Remaining:&nbsp;&nbsp;@string.Format("${0:N2}", Model.CapCalculationResult.AmountRemainingUnderCap);
         </div>
         <br /><br />
 
-        @foreach (var result in Model.AffiliatedFeesResult.Summary)
+        @foreach (var result in Model.CapCalculationResult.CapCalculationResultInitial.Summary)
         {
             <p>@result</p>
         }
         
-            @if (Model.UnderCap)
+            @if (Model.CapCalculationResult.UnderCap)
             {
                 <p>
                     Result:&nbsp;&nbsp;&nbsp;<b>PASS</b> prior to title premium cap calculation.
                 </p>
                 <p>
-                    We have identified so far that your cap allowance has @string.Format("${0:N2}", Model.AmountRemainingUnderCap) remaining. Please enter as much data as possible for us to calculate the best title insurance premium result for you to send to your affiliate if caps can be maintained.
+                    We have identified so far that your cap allowance has @string.Format("${0:N2}", Model.CapCalculationResult.AmountRemainingUnderCap) remaining. Please enter as much data as possible for us to calculate the best title insurance premium result for you to send to your affiliate if caps can be maintained.
                 </p>
                 <p>
                     <input type="submit" id="btnNext" value="Continue" class="btn btn-large btn-success" />
@@ -39,7 +39,7 @@
                     Result:&nbsp;&nbsp;&nbsp;<b>FAIL</b> prior to title premium cap calculation
                 </p>
                 <p>
-                    @Html.ActionLink("Send To Backup", "Index", "Home", null, new { @class="btn btn-large btn-success" })
+                    @Html.ActionLink("Send To Backup", "Index", "Account", null, new { @class="btn btn-large btn-success" })
                     
                 </p>    
             }

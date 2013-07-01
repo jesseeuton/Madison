@@ -11,5 +11,7 @@ namespace Madison.Internal.QM.Web.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int ResWareTransactionTypeId { get; set; }
+        public int ResWareProductTypeId { get; set; }
     }
 }

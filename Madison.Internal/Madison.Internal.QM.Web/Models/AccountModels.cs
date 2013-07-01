@@ -22,6 +22,10 @@ namespace Madison.Internal.QM.Web.Models
         public int PartnerCompanyId { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public int OfficeId { get; set; }
+
+        [ForeignKey("CompanyRelationship")]
+        public int CompanyRelationshipId { get; set; }
         public CompanyRelationship CompanyRelationship { get; set; }
     }
 

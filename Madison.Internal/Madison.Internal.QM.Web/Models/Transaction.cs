@@ -11,19 +11,56 @@ namespace Madison.Internal.QM.Web.Models
     public class Transaction
     {
         public int Id { get; set; }
+
+        #region Foreign Keys
+        [ForeignKey("TransactionType")]
+        public int? TransactionTypeId { get; set; }
+
+        [ForeignKey("LoanType")]
+        public int? LoanTypeId { get; set; }
+
+        [ForeignKey("InterestType")]
+        public int? InterestTypeId { get; set; }
+
+        [ForeignKey("Property")]
+        public int? PropertyId { get; set; }
+
+        [ForeignKey("UserProfile")]
+        public int? UserProfileId { get; set; }
+
+        [ForeignKey("Borrower")]
+        public int? BorrowerId { get; set; }
+
+        [ForeignKey("FeeEstimateResult")]
+        public int? FeeEstimateResultId { get; set; }
+
+        [ForeignKey("CapCalculationResult")]
+        public int? CapCalculationResultId { get; set; }
+        #endregion
+
         public virtual TransactionType TransactionType { get; set; }
         public virtual LoanType LoanType { get; set; }
-        public virtual PropertyType PropertyType { get; set; }
         public virtual InterestType InterestType { get; set; }
         public virtual Property Property { get; set; }
-        public virtual Person Person { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
         public virtual Borrower Borrower { get; set; }
         public virtual AffiliatedFees AffiliatedFee { get; set; }
         public virtual List<Endorsement> Endorsements { get; set; }
+        public virtual FeeEstimateResult FeeEstimateResult { get; set; }
+        public virtual CapCalculationResult CapCalculationResult { get; set; }
          
         [Display(Name = "Loan Amount")]
         [Required(AllowEmptyStrings=false, ErrorMessage="Loan Amount is required.")]
         public decimal LoanAmount { get; set; }
+
+        [Display(Name = "Original Debt Amount")]
+        public decimal? OriginalDebtAmount { get; set; }
+
+        [Display(Name = "Sale Price")]
+        public decimal? SalePrice { get; set; }
+
+        [Display(Name = "Unpaid Principal")]
+        public decimal? UnpaidPrincipalAmount { get; set; }
 
         #region Buyer
         [Display(Name = "Prior Lender Policy Date")]

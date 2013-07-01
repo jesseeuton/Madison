@@ -14,7 +14,7 @@ namespace Madison.Internal.QM.Web.Controllers
             property.Address1 = "Address 1";
             property.Address2 = "Address 2";
             property.City = "Boulder";
-            property.County = "Boulder County";
+            property.County = "Boulder";
             property.State = "CO";
             property.Zip = "80301";
             return property;

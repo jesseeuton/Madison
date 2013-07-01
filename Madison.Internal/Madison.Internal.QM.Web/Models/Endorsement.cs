@@ -11,6 +11,6 @@ namespace Madison.Internal.QM.Web.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool DefaultSelect { get; set; }
+        public bool Selected { get; set; }
     }
 }

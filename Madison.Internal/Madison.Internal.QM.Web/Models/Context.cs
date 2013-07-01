@@ -30,15 +30,9 @@ namespace Madison.Internal.QM.Web.Models
         public DbSet<PropertyType> PropertyTypes { get; set; }
         public DbSet<TransactionType> TransactionTypes { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<CapCalculationResult> CapCalculationResults { get; set; }
+        public DbSet<CapCalculationResultInitial> CapCalculationResultsInitial { get; set; }
+        public DbSet<CapCalculationResultFinal> CapCalculationResultsFinal { get; set; }
+        public DbSet<FeeEstimateResult> FeeEstimateResults { get; set; }
     }
-
-    //public class UsersContext : DbContext
-    //{
-    //    public UsersContext()
-    //        : base("name=DefaultConnection")
-    //    {
-    //    }
-
-    //    public DbSet<UserProfile> UserProfiles { get; set; }
-    //}
 }

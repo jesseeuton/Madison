@@ -17,8 +17,6 @@ namespace Madison.Internal.QM.Web.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Index()
         {

@@ -8,19 +8,19 @@
         <legend class="lead">Transaction Info</legend>
 
         <div>
-            @Html.LabelFor(model => model.Transaction.TransactionType.Name)
+            @Html.LabelFor(model => model.Transaction.TransactionType)
         </div>
         <div>
             @Html.DropDownListFor(model => model.Transaction.TransactionType.Id, new SelectList(Model.TransactionTypes, "Id", "Name"))
         </div>
         <div>
-            @Html.LabelFor(model => model.Transaction.LoanType.Name)
+            @Html.LabelFor(model => model.Transaction.LoanType)
         </div>
         <div>
             @Html.DropDownListFor(model => model.Transaction.LoanType.Id, new SelectList(Model.LoanTypes, "Id", "Name"))
         </div>
         <div>
-            @Html.LabelFor(model => model.Transaction.InterestType.Name)
+            @Html.LabelFor(model => model.Transaction.InterestType)
         </div>
         <div>
             @Html.DropDownListFor(model => model.Transaction.InterestType.Id, new SelectList(Model.InterestTypes, "Id", "Name"))
@@ -29,20 +29,41 @@
             <label for="categories">Endorsements</label>
         </div>
         <div class="editor-field">
-            @foreach(var endorsement in Model.Endorsements) {
-
-            <label class="checkbox">
-                <input type="checkbox" name="categories" value="@endorsement.Id" checked="@endorsement.DefaultSelect"> @endorsement.Name
-            </label>
-
+            @foreach (var endorsement in Model.Endorsements)
+            {
+                @Html.CheckBoxFor(m => endorsement.Selected, new object { })
+                @Html.DisplayFor(m => endorsement.Name)
+                <br />
             }
         </div>
+        <br />
         <div>
             @Html.LabelFor(model => model.Transaction.LoanAmount)
         </div>
         <div>
             @Html.EditorFor(model => model.Transaction.LoanAmount)
             @Html.ValidationMessageFor(model => model.Transaction.LoanAmount)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.SalePrice)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.SalePrice)
+            @Html.ValidationMessageFor(model => model.Transaction.SalePrice)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.OriginalDebtAmount)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.OriginalDebtAmount)
+            @Html.ValidationMessageFor(model => model.Transaction.OriginalDebtAmount)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Transaction.UnpaidPrincipalAmount)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Transaction.UnpaidPrincipalAmount)
+            @Html.ValidationMessageFor(model => model.Transaction.UnpaidPrincipalAmount)
         </div>
         <p>
             <input id="btnNext" type="submit" value="Next" class="btn btn-large btn-success" />

@@ -23,7 +23,7 @@ namespace Madison.ResWare.Service.EstimateFeesService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Madison.ResWare.Service.EstimateFeesService.HUDFees[] HUDFeesField;
+        private System.Collections.Generic.List<Madison.ResWare.Service.EstimateFeesService.HUDFees> HUDFeesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MessageField;
@@ -45,7 +45,7 @@ namespace Madison.ResWare.Service.EstimateFeesService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Madison.ResWare.Service.EstimateFeesService.HUDFees[] HUDFees {
+        public System.Collections.Generic.List<Madison.ResWare.Service.EstimateFeesService.HUDFees> HUDFees {
             get {
                 return this.HUDFeesField;
             }

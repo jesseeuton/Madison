@@ -7,15 +7,46 @@
     <div class="jumbotron">
         <h1>Assessment Complete</h1>
         
+        <p></p>
         <p class="lead">@Model.Message</p>
-        
+
+        <div style="text-align: left">
+            <p>Summary (for debugging purposes):</p>
+            <p>
+                Cap Amount:&nbsp;
+                @Model.Transaction.CapCalculationResult.CapAmount<br />
+            </p>
+            <br />
+            <p>
+                Fees used in initial calculation:&nbsp;&nbsp;@Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total
+            </p>
+            <br />
+            <p>
+                Calculated title fees based on input:<br />
+                @foreach (var feeText in Model.Transaction.FeeEstimateResult.GetFeeSummaryList())
+                {
+                  @feeText   
+                  <br />
+                }
+                <br />
+                Total Title Premium Fees (Hud Line = 11XX):&nbsp;
+                @Model.Transaction.FeeEstimateResult.GetTotalFeeAmount()  
+            </p>
+            <p>
+                @Model.Transaction.CapCalculationResult.CapAmount<br />
+                - @Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total<br />
+                - @Model.Transaction.FeeEstimateResult.GetTotalFeeAmount() <br />
+                = @(@Model.Transaction.CapCalculationResult.CapAmount - Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total - Model.Transaction.FeeEstimateResult.GetTotalFeeAmount())
+            </p>
+        </div>
+        <br />
         @if (Model.Passed)
         {
-            @Html.ActionLink("Send To Affiliate", "Index", "Home", null, new { @class="btn btn-large btn-success" })
+            @Html.ActionLink("Send To Affiliate", "Index", "Account", null, new { @class="btn btn-large btn-success" })
         }
         else
         {
-            @Html.ActionLink("Send To Madison", "Index", "Home", null, new { @class="btn btn-large btn-success" })    
+            @Html.ActionLink("Send To Madison", "Index", "Account", null, new { @class="btn btn-large btn-success" })    
         }
             
         

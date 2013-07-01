@@ -47,6 +47,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -194,7 +195,6 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\GlyphIcons.cs" />
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
-    <Compile Include="Business\AffiliatedFeesCalculationResult.cs" />
     <Compile Include="Business\CalculationFacade.cs" />
     <Compile Include="Business\CapCalculatorFactory.cs" />
     <Compile Include="Business\CapCalculatorOneHundred.cs" />
@@ -202,13 +202,10 @@
     <Compile Include="Business\CapCalculatorTwentySixty.cs" />
     <Compile Include="Business\CapCalculatorTwelveFiveTwenty.cs" />
     <Compile Include="Business\CapCalculatorTwelveFive.cs" />
-    <Compile Include="Business\CapCalculationResult.cs" />
     <Compile Include="Business\ICapCalculator.cs" />
-    <Compile Include="Business\PriorFeesResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestModelBuilder.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -267,16 +264,89 @@
     <Compile Include="Migrations\201306280403328_userprofileupdates.Designer.cs">
       <DependentUpon>201306280403328_userprofileupdates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307011608424_loantypereswareid.cs" />
+    <Compile Include="Migrations\201307011608424_loantypereswareid.Designer.cs">
+      <DependentUpon>201307011608424_loantypereswareid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011613056_transactiontype_reswarefields.cs" />
+    <Compile Include="Migrations\201307011613056_transactiontype_reswarefields.Designer.cs">
+      <DependentUpon>201307011613056_transactiontype_reswarefields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011658010_userprofile_officeid.cs" />
+    <Compile Include="Migrations\201307011658010_userprofile_officeid.Designer.cs">
+      <DependentUpon>201307011658010_userprofile_officeid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011711396_transactionadditions.cs" />
+    <Compile Include="Migrations\201307011711396_transactionadditions.Designer.cs">
+      <DependentUpon>201307011711396_transactionadditions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011726425_endorsement_selected.cs" />
+    <Compile Include="Migrations\201307011726425_endorsement_selected.Designer.cs">
+      <DependentUpon>201307011726425_endorsement_selected.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011736282_transaction_userprofile_relationship.cs" />
+    <Compile Include="Migrations\201307011736282_transaction_userprofile_relationship.Designer.cs">
+      <DependentUpon>201307011736282_transaction_userprofile_relationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011819083_transaction_feeestimateresults.cs" />
+    <Compile Include="Migrations\201307011819083_transaction_feeestimateresults.Designer.cs">
+      <DependentUpon>201307011819083_transaction_feeestimateresults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011838578_next1.cs" />
+    <Compile Include="Migrations\201307011838578_next1.Designer.cs">
+      <DependentUpon>201307011838578_next1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011925289_capcalculationtables.cs" />
+    <Compile Include="Migrations\201307011925289_capcalculationtables.Designer.cs">
+      <DependentUpon>201307011925289_capcalculationtables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307011940510_capcalculationtables_edit.cs" />
+    <Compile Include="Migrations\201307011940510_capcalculationtables_edit.Designer.cs">
+      <DependentUpon>201307011940510_capcalculationtables_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307012005117_transactiontypefk.cs" />
+    <Compile Include="Migrations\201307012005117_transactiontypefk.Designer.cs">
+      <DependentUpon>201307012005117_transactiontypefk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307012008087_moreforeignkeys.cs" />
+    <Compile Include="Migrations\201307012008087_moreforeignkeys.Designer.cs">
+      <DependentUpon>201307012008087_moreforeignkeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307012009132_propertyfk.cs" />
+    <Compile Include="Migrations\201307012009132_propertyfk.Designer.cs">
+      <DependentUpon>201307012009132_propertyfk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307012015093_companyrelationshipfk.cs" />
+    <Compile Include="Migrations\201307012015093_companyrelationshipfk.Designer.cs">
+      <DependentUpon>201307012015093_companyrelationshipfk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307012017348_capcalcfk.cs" />
+    <Compile Include="Migrations\201307012017348_capcalcfk.Designer.cs">
+      <DependentUpon>201307012017348_capcalcfk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307012025043_transactionnullfk.cs" />
+    <Compile Include="Migrations\201307012025043_transactionnullfk.Designer.cs">
+      <DependentUpon>201307012025043_transactionnullfk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307012036370_capcalcedits.cs" />
+    <Compile Include="Migrations\201307012036370_capcalcedits.Designer.cs">
+      <DependentUpon>201307012036370_capcalcedits.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AffiliatedFees.cs" />
+    <Compile Include="Models\CapCalculationResultInitial.cs" />
     <Compile Include="Models\Borrower.cs" />
+    <Compile Include="Models\CapCalculationResult.cs" />
     <Compile Include="Models\CompanyRelationship.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Endorsement.cs" />
+    <Compile Include="Models\Fee.cs" />
+    <Compile Include="Models\FeeEstimateResult.cs" />
     <Compile Include="Models\InterestType.cs" />
     <Compile Include="Models\LoanType.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\CapCalculationResultFinal.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyType.cs" />
     <Compile Include="Models\Transaction.cs" />
@@ -291,6 +361,7 @@
     <Compile Include="ViewModels\AssessmentCompleteViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BorrowerViewModel.cs" />
+    <Compile Include="ViewModels\CapCalculationResultViewModel.cs" />
     <Compile Include="ViewModels\PersonViewModel.cs" />
     <Compile Include="ViewModels\PriorLoanViewModel.cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
@@ -491,11 +562,66 @@
     <EmbeddedResource Include="Migrations\201306280403328_userprofileupdates.resx">
       <DependentUpon>201306280403328_userprofileupdates.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011608424_loantypereswareid.resx">
+      <DependentUpon>201307011608424_loantypereswareid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011613056_transactiontype_reswarefields.resx">
+      <DependentUpon>201307011613056_transactiontype_reswarefields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011658010_userprofile_officeid.resx">
+      <DependentUpon>201307011658010_userprofile_officeid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011711396_transactionadditions.resx">
+      <DependentUpon>201307011711396_transactionadditions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011726425_endorsement_selected.resx">
+      <DependentUpon>201307011726425_endorsement_selected.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011736282_transaction_userprofile_relationship.resx">
+      <DependentUpon>201307011736282_transaction_userprofile_relationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011819083_transaction_feeestimateresults.resx">
+      <DependentUpon>201307011819083_transaction_feeestimateresults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011838578_next1.resx">
+      <DependentUpon>201307011838578_next1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011925289_capcalculationtables.resx">
+      <DependentUpon>201307011925289_capcalculationtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307011940510_capcalculationtables_edit.resx">
+      <DependentUpon>201307011940510_capcalculationtables_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307012005117_transactiontypefk.resx">
+      <DependentUpon>201307012005117_transactiontypefk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307012008087_moreforeignkeys.resx">
+      <DependentUpon>201307012008087_moreforeignkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307012009132_propertyfk.resx">
+      <DependentUpon>201307012009132_propertyfk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307012015093_companyrelationshipfk.resx">
+      <DependentUpon>201307012015093_companyrelationshipfk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307012017348_capcalcfk.resx">
+      <DependentUpon>201307012017348_capcalcfk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307012025043_transactionnullfk.resx">
+      <DependentUpon>201307012025043_transactionnullfk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307012036370_capcalcedits.resx">
+      <DependentUpon>201307012036370_capcalcedits.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Madison.Internal.QM.Business\Madison.Internal.QM.Business.csproj">
-      <Project>{67357a74-c320-4d7b-b9a1-f282e4e17032}</Project>
-      <Name>Madison.Internal.QM.Business</Name>
+    <ProjectReference Include="..\..\Madison.ResWare\Madison.ResWare.Domain\Madison.ResWare.Domain.csproj">
+      <Project>{a62311e6-b864-47f8-8748-e9d01165c19f}</Project>
+      <Name>Madison.ResWare.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Madison.ResWare\Madison.ResWare.Service\Madison.ResWare.Service.csproj">
+      <Project>{ab1215b9-073f-4268-889a-9e0af5cb9a64}</Project>
+      <Name>Madison.ResWare.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

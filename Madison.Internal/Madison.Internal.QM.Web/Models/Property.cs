@@ -35,6 +35,9 @@ namespace Madison.Internal.QM.Web.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Zip is required.")]
         public string Zip { get; set; }
 
+        [ForeignKey("PropertyType")]
+        public int PropertyTypeId { get; set; }
+
         [Display(Name = "Property Type")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Property Type is required.")]
         public PropertyType PropertyType { get; set; }

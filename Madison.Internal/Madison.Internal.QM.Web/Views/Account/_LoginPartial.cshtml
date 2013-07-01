@@ -5,18 +5,16 @@
 }
 
 <form class="form-signin">
-@*    <h2 class="form-signin-heading"></h2>*@
-    
     <table style="width: 100%">
         <tr>
             <td style="text-align:right; vertical-align: middle; width: 50%;">
-                @Html.TextBoxFor(Model => Model.UserName, new { @style="width: 60%; vertical-align: middle", @type="text", @class="input-block-level", @placeholder="Username"})
+                @Html.TextBoxFor(Model => Model.UserName, new { @style="width: 60%; vertical-align: middle", @type="text", @class="input-block-level", @placeholder="Username", @tabIndex="1"})
             </td>
-            <td rowspan="2" style="padding-left: 10px; vertical-align: top"><button class="btn btn-large btn-success" type="submit">Begin</button></td>
+            <td rowspan="2" style="padding-left: 10px; vertical-align: top"><button class="btn btn-large btn-success" type="submit" tabindex="3">Begin</button></td>
         </tr>
         <tr>
             <td style="text-align:right; vertical-align: top; width: 50%;">
-                @Html.TextBoxFor(Model => Model.Password, new { @style="width: 60%; vertical-align: middle", @type="password", @class="input-block-level", @placeholder="Password"})
+                @Html.TextBoxFor(Model => Model.Password, new { @style="width: 60%; vertical-align: middle", @type="password", @class="input-block-level", @placeholder="Password", @tabIndex="2"})
             </td>
 
         </tr>
@@ -25,10 +23,6 @@
             <td></td>
         </tr>
     </table>
-@*    <label class="checkbox">
-        <input type="checkbox" value="remember-me"> Remember me
-    </label>*@
-    
 </form>
 
 @section Scripts {

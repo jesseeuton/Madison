@@ -26,8 +26,6 @@ namespace Madison.Internal.QM.Web.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            //context.UserProfiles.AddOrUpdate(p => p.Username, 
-            //    new UserProfile() { FirstName="Cynthia", comp
 
             context.CompanyRelationships.AddOrUpdate(p => p.Name,
                 new CompanyRelationship { Name="Manager" },
@@ -39,20 +37,20 @@ namespace Madison.Internal.QM.Web.Migrations
             );
 
             context.TransactionTypes.AddOrUpdate(p => p.Name,
-                new TransactionType { Name = "Refinance" },
-                new TransactionType { Name = "Purchase" },
+                new TransactionType { Name = "Refinance", ResWareTransactionTypeId = 2, ResWareProductTypeId = 7 },
+                new TransactionType { Name = "Purchase", ResWareTransactionTypeId = 3, ResWareProductTypeId = 4 },
                 new TransactionType { Name = "Reverse" }
                 );
 
             context.Endorsements.AddOrUpdate(p => p.Name,
-                new Endorsement { Name = "Planned Unit Development", DefaultSelect=false },
-                new Endorsement { Name = "Survey Coverage", DefaultSelect = false },
-                new Endorsement { Name = "Condo", DefaultSelect = false },
-                new Endorsement { Name = "Variable Rate Endorsement", DefaultSelect = false },
-                new Endorsement { Name = "Variable Rate, Negative Am", DefaultSelect = false },
-                new Endorsement { Name = "Manufactured Housing", DefaultSelect = false },
-                new Endorsement { Name = "Environmental Protection", DefaultSelect = true },
-                new Endorsement { Name = "Restrictions, Encroachments, Minerals", DefaultSelect = true }
+                new Endorsement { Name = "Planned Unit Development", Selected=false },
+                new Endorsement { Name = "Survey Coverage", Selected = false },
+                new Endorsement { Name = "Condo", Selected = false },
+                new Endorsement { Name = "Variable Rate Endorsement", Selected = false },
+                new Endorsement { Name = "Variable Rate, Negative Am", Selected = false },
+                new Endorsement { Name = "Manufactured Housing", Selected = false },
+                new Endorsement { Name = "Environmental Protection", Selected = true },
+                new Endorsement { Name = "Restrictions, Encroachments, Minerals", Selected = true }
                 );
 
             context.InterestTypes.AddOrUpdate(p => p.Name,

@@ -11,6 +11,9 @@ using Madison.Internal.QM.Web.Models;
 using Madison.Internal.QM.Web.ViewModels;
 using Madison.Internal.QM.Business;
 
+using Madison.ResWare.Service;
+using Madison.ResWare.Domain;
+
 namespace Madison.Internal.QM.Web.Controllers
 {
     [Authorize]
@@ -23,42 +26,13 @@ namespace Madison.Internal.QM.Web.Controllers
 
         }
 
-        public ActionResult BackToStepOne()
-        {
-            return View();
-        }
-
-        //public ActionResult PersonInfo()
-        //{
-        //    PersonViewModel personViewModel = new PersonViewModel();
-
-        //    personViewModel.CompanyRelationships = db.CompanyRelationships.ToList();
-
-        //    return View("PersonInfo", personViewModel);
-        //}
-
-        //[HttpPost]
-        //public ActionResult PersonInfo(PersonViewModel viewModel)
-        //{
-        //    //TODO:  Save the view model
-        //    Transaction transaction = new Transaction();
-        //    if (ModelState.IsValid)
-        //    {
-        //        transaction.Person = viewModel.Person;
-        //        db.Transactions.Add(transaction);
-        //        db.SaveChanges();
-
-        //        return RedirectToAction("PropertyInfo", new { transactionId = transaction.Id});
-        //    }
-
-        //    return View(viewModel);
-        //}
-
         public ActionResult PropertyInfo()
         {
             BorrowerViewModel viewModel = new BorrowerViewModel();
             
             viewModel.PropertyTypes = db.PropertyTypes.ToList();
+            viewModel.Property = TestModelBuilder.BuildPropertyInfoForTest();
+            viewModel.Borrower = TestModelBuilder.BuildBorrowerForTest();
 
             return View("PropertyInfo", viewModel);
         }
@@ -68,7 +42,13 @@ namespace Madison.Internal.QM.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+                db.Borrowers.Add(viewModel.Borrower);
+                db.Properties.Add(viewModel.Property);
+                db.SaveChanges();
+
                 Transaction transaction = new Transaction();
+                transaction.UserProfileId = WebMatrix.WebData.WebSecurity.CurrentUserId;
                 transaction.Borrower = viewModel.Borrower;
                 transaction.Property = viewModel.Property;
 
@@ -101,9 +81,14 @@ namespace Madison.Internal.QM.Web.Controllers
             {
                 Transaction transaction = db.Transactions.Find(viewModel.TransactionId);
                 transaction.LoanAmount = viewModel.Transaction.LoanAmount;
-                transaction.InterestType = viewModel.Transaction.InterestType;
-                transaction.LoanType = viewModel.Transaction.LoanType;
-                transaction.Endorsements = viewModel.Transaction.Endorsements;
+                transaction.SalePrice = viewModel.Transaction.SalePrice;
+                transaction.UnpaidPrincipalAmount = viewModel.Transaction.UnpaidPrincipalAmount;
+                transaction.OriginalDebtAmount = viewModel.Transaction.UnpaidPrincipalAmount;
+
+                transaction.TransactionTypeId = viewModel.Transaction.TransactionType.Id;
+                transaction.InterestTypeId = viewModel.Transaction.InterestType.Id;
+                transaction.LoanTypeId = viewModel.Transaction.LoanType.Id;
+                //transaction.Endorsements = viewModel.Transaction.Endorsements;
 
                 db.SaveChanges();
 
@@ -126,9 +111,12 @@ namespace Madison.Internal.QM.Web.Controllers
         [HttpPost]
         public ActionResult AffiliatedFees(AffiliateFeesViewModel viewModel)
         {
-            //TODO:  save the model
             if (ModelState.IsValid)
             {
+                
+                db.AffiliatedFees.Add(viewModel.AffiliatedFee);
+                db.SaveChanges();
+
                 Transaction transaction = db.Transactions.Find(viewModel.TransactionId);
                 transaction.AffiliatedFee = viewModel.AffiliatedFee;
                 
@@ -137,7 +125,13 @@ namespace Madison.Internal.QM.Web.Controllers
                 CalculationFacade facade = new CalculationFacade();
                 CapCalculationResult capCalcResult = facade.CalculateAffiliatedFees(viewModel, viewModel.LoanAmount);
 
-                TempData["CapCalcResult"] = capCalcResult;
+                db.CapCalculationResults.Add(capCalcResult);
+                db.SaveChanges();
+
+                transaction.CapCalculationResult = capCalcResult;
+
+                db.SaveChanges();
+                
                 return RedirectToAction("ShowAffiliatedFeesCalculation", new { transactionId = transaction.Id });
             }
 
@@ -146,16 +140,20 @@ namespace Madison.Internal.QM.Web.Controllers
 
         public ActionResult ShowAffiliatedFeesCalculation(int transactionId)
         {
-            CapCalculationResult capCalcResult = TempData["CapCalcResult"] as CapCalculationResult;
-            capCalcResult.TransactionId = transactionId;
+            CapCalculationResultViewModel viewModel = new CapCalculationResultViewModel();
 
-            return View("AffiliatedFeesCalculation", capCalcResult);
+            Transaction transaction = db.Transactions.Find(transactionId);
+
+            viewModel.CapCalculationResult = transaction.CapCalculationResult;
+            viewModel.TransactionId = transactionId;
+
+            return View("AffiliatedFeesCalculation", viewModel);
         }
 
         [HttpPost]
-        public ActionResult ShowAffiliatedFeesCalculation(CapCalculationResult capCalculationResult)
+        public ActionResult ShowAffiliatedFeesCalculation(CapCalculationResultViewModel viewModel)
         {
-            return RedirectToAction("PriorTransactionInfo", new { capCalculationResult.TransactionId });
+            return RedirectToAction("PriorTransactionInfo", new { viewModel.TransactionId });
         }
 
         public ActionResult PriorTransactionInfo(int transactionId)
@@ -193,7 +191,51 @@ namespace Madison.Internal.QM.Web.Controllers
                 db.SaveChanges();
 
                 //Call ResWare Fee Service to do the final calc
+                EstimateFeesServiceFacade reswareFacade = new EstimateFeesServiceFacade();
+                FeeEstimateRequest request = new FeeEstimateRequest();
+                request.City = transaction.Property.City;
+                request.ClientID = transaction.UserProfile.PartnerCompanyId;
+                request.County = transaction.Property.County;
+                request.LoanAmount = transaction.LoanAmount;
+                request.OfficeID = transaction.UserProfile.OfficeId;
+                request.OriginalDebtAmount = transaction.OriginalDebtAmount ?? 0;
+                request.ProductTypeID = transaction.TransactionType.ResWareProductTypeId;
+                request.SalesPrice = transaction.SalePrice ?? 0;
+                request.State = transaction.Property.State;
+                request.TransactionTypeID = transaction.TransactionType.ResWareTransactionTypeId;
+                request.UnpaidPrincipalAmount = transaction.UnpaidPrincipalAmount ?? 0;
+               
+                ResWare.Service.EstimateFeesService.EstimateFeesResponse response = reswareFacade.GetFeeEstimate(request);
 
+                //This needs some work and needs to be moved out.
+                FeeEstimateResult result;
+                if (response.HUDFees == null)
+                {
+                    result = new FeeEstimateResult();
+                    result.WasSuccessful = false;
+                    result.Message = response.Message;
+                }
+                else
+                {
+                    IList<Models.Fee> fees = new List<Models.Fee>();
+                    response.HUDFees.ToList().ForEach(reswareFee =>
+                    {
+                        Models.Fee fee = new Models.Fee();
+                        fee.Amount = reswareFee.Amount;
+                        fee.HudLine = reswareFee.HUDLine;
+                        fee.HudLineDescription = reswareFee.HUDLineDescription;
+
+                        fees.Add(fee);
+                    });
+
+                    result = new FeeEstimateResult(fees, true, string.Empty);
+                }
+
+                db.FeeEstimateResults.Add(result);
+                db.SaveChanges();
+
+                transaction.FeeEstimateResult = result;
+                db.SaveChanges();
 
                 return RedirectToAction("AssessmentComplete", new { transactionId = transaction.Id });
             }
@@ -206,21 +248,29 @@ namespace Madison.Internal.QM.Web.Controllers
             AssessmentCompleteViewModel viewModel = new AssessmentCompleteViewModel();
             StringBuilder messageBuilder = new StringBuilder();
 
-            if (TempData["PassedQM"] != null && (bool)TempData["PassedQM"])
+            //Get the final calculation.
+            Transaction transaction = db.Transactions.Find(transactionId);
+            viewModel.Transaction = transaction;
+
+            decimal capAmount = viewModel.Transaction.CapCalculationResult.CapAmount;
+            decimal initialFees = viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total;
+            decimal finalFees = viewModel.Transaction.FeeEstimateResult.GetTotalFeeAmount();
+
+            if (capAmount > (initialFees + finalFees))
             {
                 viewModel.Passed = true;
-                messageBuilder.AppendLine("Based on your data input, this transaction has PASSED the initial QM analysis.");
+                messageBuilder.AppendLine("Based on your data input, this transaction has <b>PASSED</b> the initial QM analysis.");
                 messageBuilder.AppendLine("Click to send data results and premium calculations to Affiliate.");
                 viewModel.Message = messageBuilder.ToString();
             }
             else
             {
                 viewModel.Passed = false;
-                messageBuilder.AppendLine("Based on your data input, this transaction has FAILED the initial QM analysis.");
+                messageBuilder.AppendLine("Based on your data input, this transaction has <b>FAILED</b> the initial QM analysis.");
                 messageBuilder.AppendLine("Click to send to Madison Settlement Services.");
                 viewModel.Message = messageBuilder.ToString();
             }
-            
+
             return View("AssessmentComplete", viewModel);
         }
 

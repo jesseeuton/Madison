@@ -83,7 +83,7 @@ namespace Madison.Internal.QM.Web.Controllers
                 transaction.LoanAmount = viewModel.Transaction.LoanAmount;
                 transaction.SalePrice = viewModel.Transaction.SalePrice;
                 transaction.UnpaidPrincipalAmount = viewModel.Transaction.UnpaidPrincipalAmount;
-                transaction.OriginalDebtAmount = viewModel.Transaction.UnpaidPrincipalAmount;
+                transaction.OriginalDebtAmount = viewModel.Transaction.OriginalDebtAmount;
 
                 transaction.TransactionTypeId = viewModel.Transaction.TransactionType.Id;
                 transaction.InterestTypeId = viewModel.Transaction.InterestType.Id;

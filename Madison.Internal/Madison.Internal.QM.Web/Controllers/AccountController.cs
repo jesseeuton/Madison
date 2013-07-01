@@ -63,7 +63,7 @@ namespace Madison.Internal.QM.Web.Controllers
                         PartnerCompanyID = 1
                     });
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Account");
                 }
                 catch (MembershipCreateUserException e)
                 {

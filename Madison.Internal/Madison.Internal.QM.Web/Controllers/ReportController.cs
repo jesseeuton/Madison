@@ -23,10 +23,10 @@ namespace Madison.Internal.QM.Web.Controllers
             return View();
         }
 
-        public ActionResult QMATReport()
+        public ActionResult QMATReport(int transactionId)
         {
             ReportViewModel viewModel = new ReportViewModel();
-            viewModel.Transaction = db.Transactions.Find(36);
+            viewModel.Transaction = db.Transactions.Find(transactionId);
 
             decimal capAmount = viewModel.Transaction.CapCalculationResult.CapAmount;
             decimal initialFees = viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total;

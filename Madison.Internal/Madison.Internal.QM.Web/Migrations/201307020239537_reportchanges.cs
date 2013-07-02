@@ -7,28 +7,20 @@ namespace Madison.Internal.QM.Web.Migrations
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.Reports",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            DropTable("dbo.ReportModels");
+        //{
+        //    CreateTable(
+        //    "dbo.Reports",
+        //    c => new
+        //    {
+        //        Id = c.Int(nullable: false, identity: true),
+        //    })
+        //    .PrimaryKey(t => t.Id);
+
         }
         
         public override void Down()
         {
-            CreateTable(
-                "dbo.ReportModels",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            DropTable("dbo.Reports");
+            //DropTable("dbo.Reports");
         }
     }
 }

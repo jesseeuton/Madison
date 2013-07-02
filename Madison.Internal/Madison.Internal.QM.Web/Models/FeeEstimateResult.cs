@@ -44,20 +44,39 @@ namespace Madison.Internal.QM.Web.Models
 
         public decimal GetMortgageTransferTaxAmount()
         {
-            return 50;
+            decimal total = 0;
+
+            Fees.ToList().ForEach(fee =>
+            {
+                if (fee.HudLine == "1203" || fee.HudLine == "1204")
+                {
+                    total += fee.Amount;
+                }
+            });
+            return total;
         }
 
         public decimal GetSettlementFeeAmount()
         {
-            return 100;
+            decimal total = 0;
+
+            Fees.ToList().ForEach(fee =>
+            {
+                if (fee.HudLine == "1101" || fee.HudLine == "1102" || fee.HudLine == "1110")
+                {
+                    total += fee.Amount;
+                }
+            });
+            return total;
         }
 
+        //move all the "Get" methods out of here.
         public decimal GetRecordingFeeAmount()
         {
             decimal total = 0;
             Fees.ToList().ForEach(fee => 
                     {
-                        if (fee.HudLine.StartsWith("12"))
+                        if (fee.HudLine == "1201" || fee.HudLine == "1202" || fee.HudLine == "1206")
                         {
                             total += fee.Amount;
                         }

@@ -27,10 +27,9 @@ namespace Madison.Internal.QM.Web.Models
             Message = message;
         }
 
-        public decimal GetTotalFeeAmount()
+        public decimal GetTitlePremiumsAmount()
         {
             decimal total = 0;
-
 
             //subtract the 1200's from the calculation
             Fees.ToList().ForEach(fee => 
@@ -41,6 +40,21 @@ namespace Madison.Internal.QM.Web.Models
                         }
                     });
             return total;
+        }
+
+        public decimal GetMortgageTransferTaxAmount()
+        {
+            return 50;
+        }
+
+        public decimal GetSettlementFeeAmount()
+        {
+            return 100;
+        }
+
+        public decimal GetRecordingFeeAmount()
+        {
+            return 150;
         }
 
         public string GetFeeSummaryText()

@@ -39,6 +39,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\lib\iTextSharp\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\..\lib\iTextSharp\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra">
+      <HintPath>..\..\lib\iTextSharp\itextsharp.xtra.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
@@ -205,6 +214,7 @@
     <Compile Include="Business\ICapCalculator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\TestModelBuilder.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
@@ -349,6 +359,7 @@
     <Compile Include="Models\CapCalculationResultFinal.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyType.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
@@ -364,6 +375,7 @@
     <Compile Include="ViewModels\CapCalculationResultViewModel.cs" />
     <Compile Include="ViewModels\PersonViewModel.cs" />
     <Compile Include="ViewModels\PriorLoanViewModel.cs" />
+    <Compile Include="ViewModels\ReportViewModel.cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -515,6 +527,8 @@
     <Content Include="Views\Transaction\PriorTransactionInfo.cshtml" />
     <Content Include="Views\Account\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\QMATReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

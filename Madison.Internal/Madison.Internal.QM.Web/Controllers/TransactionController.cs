@@ -254,7 +254,7 @@ namespace Madison.Internal.QM.Web.Controllers
 
             decimal capAmount = viewModel.Transaction.CapCalculationResult.CapAmount;
             decimal initialFees = viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total;
-            decimal finalFees = viewModel.Transaction.FeeEstimateResult.GetTotalFeeAmount();
+            decimal finalFees = viewModel.Transaction.FeeEstimateResult.GetTitlePremiumsAmount();
 
             if (capAmount > (initialFees + finalFees))
             {

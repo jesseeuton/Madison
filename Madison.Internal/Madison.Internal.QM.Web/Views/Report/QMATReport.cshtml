@@ -1,0 +1,77 @@
+﻿@model Madison.Internal.QM.Web.ViewModels.ReportViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Q-MAT Report</title>
+    <style type="text/css">
+span.cls_014{font-family:"Calibri Bold",serif;font-size:17.6px;color:rgb(153,204,0);font-weight:bold;font-style:normal}
+div.cls_014{font-family:"Calibri Bold",serif;font-size:17.6px;color:rgb(153,204,0);font-weight:bold;font-style:normal}
+span.cls_005{font-family:"Calibri Bold",serif;font-size:11.7px;color:rgb(153,204,0);font-weight:bold;font-style:normal}
+div.cls_005{font-family:"Calibri Bold",serif;font-size:11.7px;color:rgb(153,204,0);font-weight:bold;font-style:normal}
+span.cls_007{font-family:"Calibri Bold",serif;font-size:8.8px;color:rgb(0,0,0);font-weight:bold;font-style:normal}
+div.cls_007{font-family:"Calibri Bold",serif;font-size:8.8px;color:rgb(0,0,0);font-weight:bold;font-style:normal}
+span.cls_009{font-family:"Calibri",serif;font-size:9.7px;color:rgb(101,153,0);font-weight:normal;font-style:normal}
+div.cls_009{font-family:"Calibri",serif;font-size:9.7px;color:rgb(101,153,0);font-weight:normal;font-style:normal}
+span.cls_011{font-family:"Calibri Bold",serif;font-size:11.7px;color:rgb(101,153,0);font-weight:bold;font-style:normal}
+div.cls_011{font-family:"Calibri Bold",serif;font-size:11.7px;color:rgb(101,153,0);font-weight:bold;font-style:normal}
+span.cls_012{font-family:"Calibri",serif;font-size:9.7px;color:rgb(0,0,0);font-weight:normal;font-style:normal}
+div.cls_012{font-family:"Calibri",serif;font-size:9.7px;color:rgb(0,0,0);font-weight:normal;font-style:normal}
+span.cls_002{font-family:"Calibri",serif;font-size:7.9px;color:rgb(0,0,0);font-weight:normal;font-style:normal}
+div.cls_002{font-family:"Calibri",serif;font-size:7.9px;color:rgb(0,0,0);font-weight:normal;font-style:normal}
+</style>
+</head>
+<body>
+    
+<div style="position:absolute;left:50%;margin-left:-297px;top:0px;width:595px;height:842px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px"></div>
+<div style="position:absolute;left:21.36px;top:61.57px" class="cls_014">Because</div>
+<div style="position:absolute;left:21.36px;top:82.81px" class="cls_014">Performance Matters</div>
+<div style="position:absolute;left:14.04px;top:144.20px" class="cls_005">QMAT&nbsp;ID#&nbsp;@Model.Transaction.Id</div>
+    
+<div style="position:absolute;left:14.04px;top:172.64px" class="cls_005">QMAT ASSESSMENT RESULTS:</div>
+<div style="position:absolute;left:329.43px;top:172.64px" class="cls_005">@Model.PassFailText</div>
+<div style="position:absolute;left:14.04px;top:215.40px" class="cls_007">Address:&nbsp;@Model.Transaction.Property.Address1</div>
+<div style="position:absolute;left:190.44px;top:215.40px" class="cls_007">Cap Amount:&nbsp;@Model.Transaction.CapCalculationResult.CapAmount</div>
+<div style="position:absolute;left:366.72px;top:215.40px" class="cls_007">Total Affiliates Escrow Fees:&nbsp;TODO</div>
+<div style="position:absolute;left:14.04px;top:226.20px" class="cls_007">City:&nbsp;@Model.Transaction.Property.City</div>
+<div style="position:absolute;left:190.44px;top:226.20px" class="cls_007">Total Affiliated Settlement Fees:&nbsp;@Model.Transaction.AffiliatedFee.TotalSettlementFee</div>
+<div style="position:absolute;left:366.72px;top:226.20px" class="cls_007">Total Inspection Fees:&nbsp;@Model.Transaction.AffiliatedFee.InspectionFee</div>
+<div style="position:absolute;left:14.04px;top:236.76px" class="cls_007">State:&nbsp;@Model.Transaction.Property.State</div>
+<div style="position:absolute;left:190.44px;top:236.76px" class="cls_007">Total Affiliated Appraisal Fees:&nbsp;@Model.Transaction.AffiliatedFee.AppraisalFee</div>
+<div style="position:absolute;left:366.72px;top:236.76px" class="cls_007">Total Third Party Origination Fees:&nbsp;@Model.Transaction.AffiliatedFee.MortageOriginatorCompensationAmount</div>
+<div style="position:absolute;left:14.04px;top:247.56px" class="cls_007">County:&nbsp;@Model.Transaction.Property.County</div>
+<div style="position:absolute;left:190.44px;top:247.56px" class="cls_007">Total Affiliated Credit Fees:&nbsp;@Model.Transaction.AffiliatedFee.CreditFee</div>
+<div style="position:absolute;left:366.72px;top:247.56px" class="cls_007">Total Lender Fees:&nbsp;@Model.Transaction.AffiliatedFee.LenderFee</div>
+<div style="position:absolute;left:14.04px;top:258.24px" class="cls_007">Zip Code:&nbsp;@Model.Transaction.Property.Zip</div>
+<div style="position:absolute;left:190.44px;top:258.24px" class="cls_007">Total Affiliated Survey Fees:&nbsp;@Model.Transaction.AffiliatedFee.SurveyFee</div>
+<div style="position:absolute;left:366.72px;top:258.24px" class="cls_007">Title Insurance Premium:&nbsp;@Model.TitleInsurancePremium</div>
+<div style="position:absolute;left:14.04px;top:268.92px" class="cls_007">Loan Amount:&nbsp;@Model.Transaction.LoanAmount</div>
+<div style="position:absolute;left:190.44px;top:268.92px" class="cls_007">Total Affiliated Notary Fees:&nbsp;@Model.Transaction.AffiliatedFee.NotaryFee</div>
+<div style="position:absolute;left:14.04px;top:296.19px" class="cls_009">QMAT result is based on data entered and assumes data entered is correct. Cap calculations are based on lender risk</div>
+<div style="position:absolute;left:14.04px;top:308.19px" class="cls_009">assessment and the finalized Qualified Mortgage Rule enforced by the CFPB.</div>
+<div style="position:absolute;left:14.04px;top:346.16px" class="cls_011">Madison Settlement Services Fee Quote ID# (Why do we need 2 quote ids (QMAT and Madison)?)</div>
+<div style="position:absolute;left:49.08px;top:372.27px" class="cls_012">Title Insurance through Madison Settlement Services:</div>
+<div style="position:absolute;left:399.48px;top:372.27px" class="cls_012">@Model.TitleInsurancePremium</div>
+<div style="position:absolute;left:49.08px;top:384.15px" class="cls_012">Total Settlement Fees through Madison Settlement Services:</div>
+<div style="position:absolute;left:399.49px;top:384.15px" class="cls_012">@Model.SettlementFees</div>
+<div style="position:absolute;left:49.08px;top:396.15px" class="cls_012">Total Recording Fees through Madison Settlement Services:</div>
+<div style="position:absolute;left:399.49px;top:396.15px" class="cls_012">@Model.RecordingFees</div>
+<div style="position:absolute;left:49.08px;top:407.91px" class="cls_012">Total Mortgage Tax/Transfer Tax through Madison Settlement Services:</div>
+<div style="position:absolute;left:395.16px;top:407.91px" class="cls_012">@Model.MortgageTransferTaxPremium</div>
+<div style="position:absolute;left:49.08px;top:431.67px" class="cls_009">Total Guaranteed Fees through Madison Settlement Services:</div>
+<div style="position:absolute;left:395.16px;top:431.67px" class="cls_009">@Model.TotalFees</div>
+<div style="position:absolute;left:14.04px;top:469.83px" class="cls_009">Fee quote is based on standard transaction requirements and assumes all data entered is correct and true. For questions</div>
+<div style="position:absolute;left:14.04px;top:481.59px" class="cls_009">about this quote please contact Madison Settlement Services at 866.633.5909 x 150.</div>
+<div style="position:absolute;left:14.04px;top:723.58px" class="cls_002">QMAT is a patent pending data analysis tool designed to assist lenders and originators in calculating fees caps required of a QM status loan per regulatory</div>
+<div style="position:absolute;left:14.04px;top:733.06px" class="cls_002">requirements. QMAT does not guaranteed QM status but is designed to identify high risk loans which may become NON-QM loans in the course of standard</div>
+<div style="position:absolute;left:14.04px;top:742.66px" class="cls_002">fulfillment or at origination. Madison Settlement Services takes great efforts to ensure reliability of this product but does not offer insurance for this</div>
+<div style="position:absolute;left:14.04px;top:752.14px" class="cls_002">certificate nor for the status of any loan assessed by this tool. We do stand by the data we provide as one of the most reliable data resources available in</div>
+<div style="position:absolute;left:14.04px;top:761.74px" class="cls_002">the market today.</div>
+</div>
+</body>
+</html>

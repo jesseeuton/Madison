@@ -29,14 +29,14 @@
                   <br />
                 }
                 <br />
-                Total Title Premium Fees (Hud Line = 11XX):&nbsp;
-                @Model.Transaction.FeeEstimateResult.GetTotalFeeAmount()  
+                Total Title Premium Fees:&nbsp;
+                @Model.Transaction.FeeEstimateResult.GetTitlePremiumsAmount()  
             </p>
             <p>
                 @Model.Transaction.CapCalculationResult.CapAmount<br />
                 - @Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total<br />
-                - @Model.Transaction.FeeEstimateResult.GetTotalFeeAmount() <br />
-                = @(@Model.Transaction.CapCalculationResult.CapAmount - Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total - Model.Transaction.FeeEstimateResult.GetTotalFeeAmount())
+                - @Model.Transaction.FeeEstimateResult.GetTitlePremiumsAmount() <br />
+                = @(@Model.Transaction.CapCalculationResult.CapAmount - Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total - Model.Transaction.FeeEstimateResult.GetTitlePremiumsAmount())
             </p>
         </div>
         <br />

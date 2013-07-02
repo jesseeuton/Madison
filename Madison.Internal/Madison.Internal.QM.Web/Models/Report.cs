@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Madison.Internal.QM.Web.Models
 {
-    public class ReportModel
+    public class Report
     {
         public int Id { get; set; }
     }

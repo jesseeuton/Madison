@@ -342,6 +342,10 @@
     <Compile Include="Migrations\201307012036370_capcalcedits.Designer.cs">
       <DependentUpon>201307012036370_capcalcedits.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307020239537_reportchanges.cs" />
+    <Compile Include="Migrations\201307020239537_reportchanges.Designer.cs">
+      <DependentUpon>201307020239537_reportchanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AffiliatedFees.cs" />
@@ -359,7 +363,7 @@
     <Compile Include="Models\CapCalculationResultFinal.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyType.cs" />
-    <Compile Include="Models\ReportModel.cs" />
+    <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
@@ -626,6 +630,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307012036370_capcalcedits.resx">
       <DependentUpon>201307012036370_capcalcedits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307020239537_reportchanges.resx">
+      <DependentUpon>201307020239537_reportchanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

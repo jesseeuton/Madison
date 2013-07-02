@@ -34,7 +34,7 @@ namespace Madison.Internal.QM.Web.Models
             //subtract the 1200's from the calculation
             Fees.ToList().ForEach(fee => 
                     {
-                        if (!fee.HudLine.StartsWith("12"))
+                        if (fee.HudLine == "1103" || fee.HudLine == "1104" || fee.HudLine == "1109")
                         {
                             total += fee.Amount;
                         }
@@ -54,7 +54,15 @@ namespace Madison.Internal.QM.Web.Models
 
         public decimal GetRecordingFeeAmount()
         {
-            return 150;
+            decimal total = 0;
+            Fees.ToList().ForEach(fee => 
+                    {
+                        if (fee.HudLine.StartsWith("12"))
+                        {
+                            total += fee.Amount;
+                        }
+                    });
+            return total;
         }
 
         public string GetFeeSummaryText()

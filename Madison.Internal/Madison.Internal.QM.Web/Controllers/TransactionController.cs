@@ -259,14 +259,14 @@ namespace Madison.Internal.QM.Web.Controllers
             if (capAmount > (initialFees + finalFees))
             {
                 viewModel.Passed = true;
-                messageBuilder.AppendLine("Based on your data input, this transaction has <b>PASSED</b> the initial QM analysis.");
+                messageBuilder.AppendLine("Based on your data input, this transaction has PASSED the initial QM analysis.");
                 messageBuilder.AppendLine("Click to send data results and premium calculations to Affiliate.");
                 viewModel.Message = messageBuilder.ToString();
             }
             else
             {
                 viewModel.Passed = false;
-                messageBuilder.AppendLine("Based on your data input, this transaction has <b>FAILED</b> the initial QM analysis.");
+                messageBuilder.AppendLine("Based on your data input, this transaction has FAILED the initial QM analysis.");
                 messageBuilder.AppendLine("Click to send to Madison Settlement Services.");
                 viewModel.Message = messageBuilder.ToString();
             }

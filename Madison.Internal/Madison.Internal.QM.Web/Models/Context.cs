@@ -35,6 +35,6 @@ namespace Madison.Internal.QM.Web.Models
         public DbSet<CapCalculationResultFinal> CapCalculationResultsFinal { get; set; }
         public DbSet<FeeEstimateResult> FeeEstimateResults { get; set; }
 
-        public DbSet<ReportModel> ReportModels { get; set; }
+        public DbSet<Report> ReportModels { get; set; }
     }
 }

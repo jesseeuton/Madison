@@ -39,7 +39,9 @@ namespace Madison.Internal.QM.Web.Migrations
             context.TransactionTypes.AddOrUpdate(p => p.Name,
                 new TransactionType { Name = "Refinance", ResWareTransactionTypeId = 2, ResWareProductTypeId = 7 },
                 new TransactionType { Name = "Purchase", ResWareTransactionTypeId = 3, ResWareProductTypeId = 4 },
-                new TransactionType { Name = "Reverse" }
+                new TransactionType { Name = "Reverse", ResWareTransactionTypeId = 4, ResWareProductTypeId = 8 },  //TODO:  This is not correct
+                new TransactionType { Name = "Home Equity", ResWareTransactionTypeId = 4, ResWareProductTypeId = 8 },  //TODO:  This is not correct
+                new TransactionType { Name = "Home Equity LOC", ResWareTransactionTypeId = 5, ResWareProductTypeId = 8 }  //TODO:  This is not correct
                 );
 
             context.Endorsements.AddOrUpdate(p => p.Name,

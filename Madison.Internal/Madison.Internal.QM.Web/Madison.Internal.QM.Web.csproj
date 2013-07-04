@@ -354,6 +354,10 @@
     <Compile Include="Migrations\201307020428135_reporterror.Designer.cs">
       <DependentUpon>201307020428135_reporterror.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307041536529_escrowfee.cs" />
+    <Compile Include="Migrations\201307041536529_escrowfee.Designer.cs">
+      <DependentUpon>201307041536529_escrowfee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AffiliatedFees.cs" />
@@ -647,6 +651,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307020428135_reporterror.resx">
       <DependentUpon>201307020428135_reporterror.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307041536529_escrowfee.resx">
+      <DependentUpon>201307041536529_escrowfee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

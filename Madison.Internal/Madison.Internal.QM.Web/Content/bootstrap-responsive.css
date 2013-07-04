@@ -8,6 +8,16 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
+/* styles for validation helpers */
+.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
 .clearfix {
   *zoom: 1;
 }

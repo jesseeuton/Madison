@@ -21,7 +21,7 @@ namespace Madison.Internal.QM.Web.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        } 
 
         public ActionResult QMATReport(int transactionId)
         {

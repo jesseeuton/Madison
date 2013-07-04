@@ -31,7 +31,7 @@
             @Html.ValidationMessageFor(model => model.AffiliatedFee.CreditFee)
         </div>
         <div>
-            Is the loan originator a direct employee of the lender?  If no, what is the total mortgage originator compensation amount?
+            Total Third Party Origination Fee.
             @*@Html.LabelFor(model => model.AffiliatedFee.MortageOriginatorCompensationAmount)*@
         </div>
         <div>
@@ -62,6 +62,14 @@
             @Html.EditorFor(model => model.AffiliatedFee.InspectionFee)
             @Html.ValidationMessageFor(model => model.AffiliatedFee.InspectionFee)
         </div>
+        <div>
+            Is Escrow Affiliated?  If yes, what is the escrow fee?
+        </div>
+        <div>
+            @Html.EditorFor(model => model.AffiliatedFee.EscrowFee)
+            @Html.ValidationMessageFor(model => model.AffiliatedFee.EscrowFee)
+        </div>
+
         <div>
             Total Lender Fees
             @*@Html.LabelFor(model => model.AffiliatedFee.LenderFee)*@

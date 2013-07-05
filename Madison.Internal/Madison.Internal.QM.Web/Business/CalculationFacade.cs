@@ -39,6 +39,24 @@ namespace Madison.Internal.QM.Business
         {
             CapCalculationResultInitial result = new CapCalculationResultInitial();
 
+            if (IsValidField(affiliatedFees.AffiliatedFee.TotalSettlementFee))
+            {
+                result.Total += (decimal)affiliatedFees.AffiliatedFee.TotalSettlementFee;
+                result.Summary.Add("Total Settlement Fee: $" + affiliatedFees.AffiliatedFee.TotalSettlementFee);
+            }
+
+            if (IsValidField(affiliatedFees.AffiliatedFee.LenderFee))
+            {
+                result.Total += (decimal)affiliatedFees.AffiliatedFee.LenderFee;
+                result.Summary.Add("Lender Fee: $" + affiliatedFees.AffiliatedFee.LenderFee);
+            }
+
+            if (IsValidField(affiliatedFees.AffiliatedFee.PMI))
+            {
+                result.Total += (decimal)affiliatedFees.AffiliatedFee.PMI;
+                result.Summary.Add("PMI: $" + affiliatedFees.AffiliatedFee.PMI);
+            }
+
             if (IsValidField(affiliatedFees.AffiliatedFee.AppraisalFee))
             {
                 result.Total += (decimal)affiliatedFees.AffiliatedFee.AppraisalFee;
@@ -75,16 +93,10 @@ namespace Madison.Internal.QM.Business
                 result.Summary.Add("Survey Fee: $" + affiliatedFees.AffiliatedFee.SurveyFee);
             }
 
-            if (IsValidField(affiliatedFees.AffiliatedFee.TotalSettlementFee))
-            {
-                result.Total += (decimal)affiliatedFees.AffiliatedFee.TotalSettlementFee;
-                result.Summary.Add("Total Settlement Fee: $" + affiliatedFees.AffiliatedFee.TotalSettlementFee);
-            }
-
-            if (IsValidField(affiliatedFees.AffiliatedFee.LenderFee))
+            if (IsValidField(affiliatedFees.AffiliatedFee.EscrowFee))
             {
                 result.Total += (decimal)affiliatedFees.AffiliatedFee.LenderFee;
-                result.Summary.Add("Lender Fee: $" + affiliatedFees.AffiliatedFee.LenderFee);
+                result.Summary.Add("Escrow Fee: $" + affiliatedFees.AffiliatedFee.LenderFee);
             }
 
             return result;

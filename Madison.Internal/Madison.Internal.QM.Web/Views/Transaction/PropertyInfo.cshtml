@@ -7,21 +7,20 @@
     <fieldset>
         <legend class="lead">Property Info</legend>
 
-
         <div class="row-fluid marketing" style="margin-bottom: 0px;">
                 <div class="span6">
                     <div>
                         @Html.LabelFor(model => model.Borrower.FirstName, new { style="width: 50px; display: inline;" })&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Borrower.FirstName)
                     </div>
                     <div>
-                        @Html.EditorFor(model => model.Borrower.FirstName)
+                        @Html.TextBoxFor(model => model.Borrower.FirstName, new { style = "width: 90%" })
                     </div>
             
                     <div>
                         @Html.LabelFor(model => model.Borrower.LastName, new { style="width: 50px; display: inline;" })&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Borrower.LastName)
                     </div>
                     <div>
-                        @Html.EditorFor(model => model.Borrower.LastName)
+                        @Html.TextBoxFor(model => model.Borrower.LastName, new { style = "width: 90%" })
                     </div>
 
                     <div>
@@ -38,7 +37,7 @@
                         @Html.LabelFor(model => model.Property.Address1, new { style="width: 50px; display: inline;" })&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Property.Address1)
                     </div>
                     <div>
-                        @Html.EditorFor(model => model.Property.Address1)
+                        @Html.TextBoxFor(model => model.Property.Address1, new { style = "width: 90%" })
                         
                     </div>
 
@@ -47,14 +46,14 @@
                     </div>
                     <div>
                         
-                        @Html.EditorFor(model => model.Property.Address2)
+                        @Html.TextBoxFor(model => model.Property.Address2, new { style = "width: 90%" })
                         @Html.ValidationMessageFor(model => model.Property.Address2)
                     </div>
                     <div>
                         @Html.LabelFor(model => model.Property.County, new { style="width: 50px; display: inline;" })&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Property.County)
                     </div>
                     <div>
-                        @Html.EditorFor(model => model.Property.County)
+                        @Html.TextBoxFor(model => model.Property.County, new { style = "width: 90%" })
                     </div>
                 </div>
                 <div class="span6" style="margin-top: 0px; margin-bottom: 0px;">
@@ -63,20 +62,20 @@
                                 @Html.LabelFor(model => model.Property.City, new { style="width: 50px; display: inline;" })&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Property.City)
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Property.City)
+                            @Html.TextBoxFor(model => model.Property.City, new { style = "width: 90%" })
                             
                         </div>
                         <div>
                             @Html.LabelFor(model => model.Property.State, new { style="width: 50px; display: inline;" })&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Property.State)
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Property.State)
+                            @Html.TextBoxFor(model => model.Property.State, new { style = "width: 90%" })
                         </div>
                         <div>
                             @Html.LabelFor(model => model.Property.Zip, new { style="width: 50px; display: inline;" })&nbsp;&nbsp;@Html.ValidationMessageFor(model => model.Property.Zip)
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Property.Zip)
+                            @Html.TextBoxFor(model => model.Property.Zip, new { style = "width: 90%" })
                         </div>
                 </div>
             </div>

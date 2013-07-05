@@ -47,5 +47,9 @@ namespace Madison.Internal.QM.Web.Models
         [Display(Name = "Escrow Fee")]
         [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
         public decimal? EscrowFee { get; set; }
+
+        [Display(Name = "PMI")]
+        [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
+        public decimal? PMI { get; set; }
     }
 }

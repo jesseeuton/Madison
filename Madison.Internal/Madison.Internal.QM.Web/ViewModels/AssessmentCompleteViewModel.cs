@@ -12,5 +12,8 @@ namespace Madison.Internal.QM.Web.ViewModels
         public bool Passed { get; set; }
         public string Message { get; set; }
         public Transaction Transaction { get; set; }
+        public decimal AffiliatedOtherFees { get; set; }
+        public decimal ResWare1100MinusAffiliatedSettlement { get; set; }
+        public decimal CapAmountMinusFeesTotal { get; set; }
     }
 }

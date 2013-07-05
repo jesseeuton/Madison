@@ -147,7 +147,7 @@ namespace Madison.Internal.QM.Web.Controllers
             viewModel.CapCalculationResult = transaction.CapCalculationResult;
             viewModel.TransactionId = transactionId;
 
-            return View("AffiliatedFeesCalculation", viewModel);
+            return View("AffiliatedFeesCalculation", viewModel); 
         }
 
         [HttpPost]
@@ -254,9 +254,32 @@ namespace Madison.Internal.QM.Web.Controllers
 
             decimal capAmount = viewModel.Transaction.CapCalculationResult.CapAmount;
             decimal initialFees = viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total;
-            decimal finalFees = viewModel.Transaction.FeeEstimateResult.GetTitlePremiumsAmount();
 
-            if (capAmount > (initialFees + finalFees))
+            decimal resware1100Fees = viewModel.Transaction.FeeEstimateResult.Get1100Fees();
+
+            //Subtract the affiliated Settlement from our 1100 fees and add the 1100 fees + total appraisal fees and subtract from the cap.
+            //Oh yeah, move this out of the controller.
+            decimal affiliatedSettlementFee = 0;
+            //decimal affiliatedTPO = 0; //add this to the settlement total?
+            //decimal affiliatedPMI = 0; //add this to the settlement total?
+
+            viewModel.AffiliatedOtherFees = 0;
+            if (viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total != null)
+            {
+                if (viewModel.Transaction.AffiliatedFee.TotalSettlementFee != null)
+                {
+                    viewModel.AffiliatedOtherFees = (decimal)viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total - (decimal)viewModel.Transaction.AffiliatedFee.TotalSettlementFee;
+                }
+            }
+
+            if (viewModel.Transaction.AffiliatedFee.TotalSettlementFee != null)
+            {
+                viewModel.ResWare1100MinusAffiliatedSettlement = resware1100Fees - (decimal)viewModel.Transaction.AffiliatedFee.TotalSettlementFee;
+            }
+
+            viewModel.CapAmountMinusFeesTotal = viewModel.Transaction.CapCalculationResult.CapAmount - (viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total + viewModel.ResWare1100MinusAffiliatedSettlement);
+            
+            if (viewModel.CapAmountMinusFeesTotal > 0)
             {
                 viewModel.Passed = true;
                 messageBuilder.AppendLine("Based on your data input, this transaction has PASSED the initial QM analysis.");

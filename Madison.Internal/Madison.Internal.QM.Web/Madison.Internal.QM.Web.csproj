@@ -358,6 +358,14 @@
     <Compile Include="Migrations\201307041536529_escrowfee.Designer.cs">
       <DependentUpon>201307041536529_escrowfee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307051825316_pmi.cs" />
+    <Compile Include="Migrations\201307051825316_pmi.Designer.cs">
+      <DependentUpon>201307051825316_pmi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307051955225_extra.cs" />
+    <Compile Include="Migrations\201307051955225_extra.Designer.cs">
+      <DependentUpon>201307051955225_extra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AffiliatedFees.cs" />
@@ -654,6 +662,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307041536529_escrowfee.resx">
       <DependentUpon>201307041536529_escrowfee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307051825316_pmi.resx">
+      <DependentUpon>201307051825316_pmi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307051955225_extra.resx">
+      <DependentUpon>201307051955225_extra.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

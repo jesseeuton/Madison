@@ -31,7 +31,7 @@
         <div class="editor-field">
             @foreach (var endorsement in Model.Endorsements)
             {
-                @Html.CheckBoxFor(m => endorsement.Selected, new object { })
+                @Html.CheckBoxFor(m => endorsement.Selected)
                 @Html.DisplayFor(m => endorsement.Name)
                 <br />
             }

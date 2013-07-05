@@ -45,8 +45,8 @@ namespace Madison.Internal.QM.Web.Migrations
                 );
 
             context.Endorsements.AddOrUpdate(p => p.Name,
-                new Endorsement { Name = "Planned Unit Development", Selected=false },
-                new Endorsement { Name = "Survey Coverage", Selected = false },
+                new Endorsement { Name = "Planned Unit Development", Selected=true },
+                new Endorsement { Name = "Survey Coverage", Selected = true },
                 new Endorsement { Name = "Condo", Selected = false },
                 new Endorsement { Name = "Variable Rate Endorsement", Selected = false },
                 new Endorsement { Name = "Variable Rate, Negative Am", Selected = false },

@@ -366,6 +366,14 @@
     <Compile Include="Migrations\201307051955225_extra.Designer.cs">
       <DependentUpon>201307051955225_extra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307060129375_transactionmodelvalidation.cs" />
+    <Compile Include="Migrations\201307060129375_transactionmodelvalidation.Designer.cs">
+      <DependentUpon>201307060129375_transactionmodelvalidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307060144532_morevalidation.cs" />
+    <Compile Include="Migrations\201307060144532_morevalidation.Designer.cs">
+      <DependentUpon>201307060144532_morevalidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AffiliatedFees.cs" />
@@ -493,6 +501,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\TransactionInfo.js" />
     <Content Include="Views\Account\Login.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -668,6 +677,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307051955225_extra.resx">
       <DependentUpon>201307051955225_extra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307060129375_transactionmodelvalidation.resx">
+      <DependentUpon>201307060129375_transactionmodelvalidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307060144532_morevalidation.resx">
+      <DependentUpon>201307060144532_morevalidation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

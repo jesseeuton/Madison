@@ -43,6 +43,11 @@ namespace Madison.Internal.QM.Web.Controllers
             return View(viewModel);
         }
 
+        public byte[] CreateReportBytes()
+        {
+            return null;
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

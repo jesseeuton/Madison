@@ -10,6 +10,17 @@ namespace Madison.Internal.QM.Web.Models
     [Table("Transaction")]
     public class Transaction
     {
+        public virtual TransactionType TransactionType { get; set; }
+        public virtual LoanType LoanType { get; set; }
+        public virtual InterestType InterestType { get; set; }
+        public virtual Property Property { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
+        public virtual Borrower Borrower { get; set; }
+        public virtual AffiliatedFees AffiliatedFee { get; set; }
+        public virtual List<Endorsement> Endorsements { get; set; }
+        public virtual FeeEstimateResult FeeEstimateResult { get; set; }
+        public virtual CapCalculationResult CapCalculationResult { get; set; }
+
         public int Id { get; set; }
 
         #region Foreign Keys
@@ -37,58 +48,23 @@ namespace Madison.Internal.QM.Web.Models
         [ForeignKey("CapCalculationResult")]
         public int? CapCalculationResultId { get; set; }
         #endregion
-
-        public virtual TransactionType TransactionType { get; set; }
-        public virtual LoanType LoanType { get; set; }
-        public virtual InterestType InterestType { get; set; }
-        public virtual Property Property { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
-        public virtual Borrower Borrower { get; set; }
-        public virtual AffiliatedFees AffiliatedFee { get; set; }
-        public virtual List<Endorsement> Endorsements { get; set; }
-        public virtual FeeEstimateResult FeeEstimateResult { get; set; }
-        public virtual CapCalculationResult CapCalculationResult { get; set; }
          
         [Display(Name = "Loan Amount")]
-        [Required(AllowEmptyStrings=false, ErrorMessage="Loan Amount is required.")]
+        [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
         public decimal LoanAmount { get; set; }
 
         [Display(Name = "Original Debt Amount")]
+        [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
         public decimal? OriginalDebtAmount { get; set; }
 
         [Display(Name = "Sale Price")]
+        [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
         public decimal? SalePrice { get; set; }
 
         [Display(Name = "Unpaid Principal")]
+        [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
+        
         public decimal? UnpaidPrincipalAmount { get; set; }
-
-        #region Buyer
-        [Display(Name = "Prior Lender Policy Date")]
-        public DateTime? BuyerPriorLenderPolicyDate { get; set; }
-
-        [Display(Name = "Prior Lender Policy Amount")]
-        public decimal? BuyerPriorLenderPolicyAmount { get; set; }
-
-        [Display(Name = "Unpaid Balance Of Prior Loan")]
-        public decimal? BuyerUnpaidBalanceOfPriorLoan { get; set; }
-
-        [Display(Name = "Prior Owner Policy Date")]
-        public DateTime? BuyerPriorOwnerPolicyDate { get; set; }
-
-        [Display(Name = "Prior Owner Policy Amount")]
-        public decimal? BuyerPriorOwnerPolicyAmount { get; set; }
-
-        //20.	Unpaid balance of loan if seller for purchase reissue calculation only
-        [Display(Name = "Unpaid Balance")]
-        public decimal? BuyerUnpaidBalance { get; set; }
-
-        [Display(Name = "Prior Lender Policy Available As Proof")]
-        public bool BuyerPriorLenderPolicyAvailableAsProof { get; set; }
-
-        [Display(Name = "Prior Owner Policy Is Available As Proof")]
-        public bool BuyerPriorOwnerPolicyAvailableAsProof { get; set; }
-
-        #endregion
 
         #region Seller
         [Display(Name = "Prior Lender Policy Date")]
@@ -106,15 +82,42 @@ namespace Madison.Internal.QM.Web.Models
         [Display(Name = "Prior Owner Policy Amount")]
         public decimal? SellerPriorOwnerPolicyAmount { get; set; }
 
-        //20.	Unpaid balance of loan if seller for purchase reissue calculation only
         [Display(Name = "Unpaid Balance")]
         public decimal? SellerUnpaidBalance { get; set; }
 
         [Display(Name = "Prior Lender Policy Available As Proof")]
         public bool SellerPriorLenderPolicyAvailableAsProof { get; set; }
-        #endregion
 
         [Display(Name = "Prior Owner Policy Is Available As Proof")]
         public bool SellerPriorOwnerPolicyAvailableAsProof { get; set; }
+
+        #endregion
+
+        #region Buyer
+        [Display(Name = "Prior Lender Policy Date")]
+        public DateTime? BuyerPriorLenderPolicyDate { get; set; }
+
+        [Display(Name = "Prior Lender Policy Amount")]
+        public decimal? BuyerPriorLenderPolicyAmount { get; set; }
+
+        [Display(Name = "Unpaid Balance Of Prior Loan")]
+        public decimal? BuyerUnpaidBalanceOfPriorLoan { get; set; }
+
+        [Display(Name = "Prior Owner Policy Date")]
+        public DateTime? BuyerPriorOwnerPolicyDate { get; set; }
+
+        [Display(Name = "Prior Owner Policy Amount")]
+        public decimal? BuyerPriorOwnerPolicyAmount { get; set; }
+
+        [Display(Name = "Unpaid Balance")]
+        public decimal? BuyerUnpaidBalance { get; set; }
+
+        [Display(Name = "Prior Lender Policy Available As Proof")]
+        public bool BuyerPriorLenderPolicyAvailableAsProof { get; set; }
+
+        [Display(Name = "Prior Owner Policy Is Available As Proof")]
+        public bool BuyerPriorOwnerPolicyAvailableAsProof { get; set; }
+
+        #endregion
     }
 }

@@ -27,6 +27,22 @@ namespace Madison.Internal.QM.Web.Models
             Message = message;
         }
 
+
+        public decimal Get1100Fees()
+        {
+                        decimal total = 0;
+
+            Fees.ToList().ForEach(fee =>
+                    {
+                        if (fee.HudLine.StartsWith("11"))
+                        {
+                            total += fee.Amount;
+                        }
+                    });
+
+            return total;
+        }
+
         public decimal GetTitlePremiumsAmount()
         {
             decimal total = 0;
@@ -39,6 +55,7 @@ namespace Madison.Internal.QM.Web.Models
                             total += fee.Amount;
                         }
                     });
+
             return total;
         }
 

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Madison.ResWare.Domain", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Madison.ResWare.Service.Tests", "..\Madison.ResWare\Madison.ResWare.Service.Tests\Madison.ResWare.Service.Tests.csproj", "{EC62A514-E679-469A-8F75-13AE0AAB8A0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Madison.Core", "Madison.Core\Madison.Core.csproj", "{B8906F43-9463-42FD-9A39-32BA2BAA3F88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Madison.Internal.QM.Core", "Madison.Internal.QM.Core\Madison.Internal.QM.Core.csproj", "{CDFA7B5C-80EC-491E-B01A-7FC839C81E77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{EC62A514-E679-469A-8F75-13AE0AAB8A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC62A514-E679-469A-8F75-13AE0AAB8A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC62A514-E679-469A-8F75-13AE0AAB8A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8906F43-9463-42FD-9A39-32BA2BAA3F88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8906F43-9463-42FD-9A39-32BA2BAA3F88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8906F43-9463-42FD-9A39-32BA2BAA3F88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8906F43-9463-42FD-9A39-32BA2BAA3F88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDFA7B5C-80EC-491E-B01A-7FC839C81E77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDFA7B5C-80EC-491E-B01A-7FC839C81E77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDFA7B5C-80EC-491E-B01A-7FC839C81E77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDFA7B5C-80EC-491E-B01A-7FC839C81E77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{67357A74-C320-4D7B-B9A1-F282E4E17032}</ProjectGuid>
+    <ProjectGuid>{CDFA7B5C-80EC-491E-B01A-7FC839C81E77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Madison.Internal.QM.Business</RootNamespace>
-    <AssemblyName>Madison.Internal.QM.Business</AssemblyName>
+    <RootNamespace>Madison.Internal.QM.Core</RootNamespace>
+    <AssemblyName>Madison.Internal.QM.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommunicationFacade.cs" />
+    <Compile Include="EmailClient.cs" />
+    <Compile Include="EmailMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QMATReportBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

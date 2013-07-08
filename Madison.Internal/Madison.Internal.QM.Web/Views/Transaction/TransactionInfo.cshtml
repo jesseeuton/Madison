@@ -11,7 +11,7 @@
             @Html.LabelFor(model => model.Transaction.TransactionType)
         </div>
         <div>
-            @Html.DropDownListFor(model => model.Transaction.TransactionType.Id, new SelectList(Model.TransactionTypes, "Id", "Name"))
+            @Html.DropDownListFor(model => model.Transaction.TransactionType.Id, new SelectList(Model.TransactionTypes, "Id", "Name"), new {id="transactionType" })
         </div>
         <div>
             @Html.LabelFor(model => model.Transaction.LoanType)
@@ -31,42 +31,50 @@
         <div class="editor-field">
             @foreach (var endorsement in Model.Endorsements)
             {
-                @Html.CheckBoxFor(m => endorsement.Selected, new object { })
+                @Html.CheckBoxFor(m => endorsement.Selected)
                 @Html.DisplayFor(m => endorsement.Name)
                 <br />
             }
         </div>
         <br />
-        <div>
-            @Html.LabelFor(model => model.Transaction.LoanAmount)
+        <div id="loanAmount">
+            <div>
+                @Html.LabelFor(model => model.Transaction.LoanAmount)
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Transaction.LoanAmount, new { id="loanAmountInput" })
+                @Html.ValidationMessageFor(model => model.Transaction.LoanAmount, "Required", new { id="loanAmountValidationMessage" })
+            </div>
         </div>
-        <div>
-            @Html.EditorFor(model => model.Transaction.LoanAmount)
-            @Html.ValidationMessageFor(model => model.Transaction.LoanAmount)
+        <div id="salePrice">
+            <div>
+                @Html.LabelFor(model => model.Transaction.SalePrice)
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Transaction.SalePrice, new { id="salePriceInput" })
+                @Html.ValidationMessageFor(model => model.Transaction.SalePrice, "Required", new { id="salesPriceValidationMessage" })
+            </div>
         </div>
-        <div>
-            @Html.LabelFor(model => model.Transaction.SalePrice)
+        <div id="originalDebtAmount">
+            <div>
+                @Html.LabelFor(model => model.Transaction.OriginalDebtAmount)
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Transaction.OriginalDebtAmount, new { id="originalDebtInput" })
+                @Html.ValidationMessageFor(model => model.Transaction.OriginalDebtAmount, "Required", new { id="originalDebtValidationMessage" })
+            </div>
         </div>
-        <div>
-            @Html.EditorFor(model => model.Transaction.SalePrice)
-            @Html.ValidationMessageFor(model => model.Transaction.SalePrice)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.Transaction.OriginalDebtAmount)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.Transaction.OriginalDebtAmount)
-            @Html.ValidationMessageFor(model => model.Transaction.OriginalDebtAmount)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.Transaction.UnpaidPrincipalAmount)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.Transaction.UnpaidPrincipalAmount)
-            @Html.ValidationMessageFor(model => model.Transaction.UnpaidPrincipalAmount)
+        <div id="unpaidPrincipal">
+            <div>
+                @Html.LabelFor(model => model.Transaction.UnpaidPrincipalAmount)
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Transaction.UnpaidPrincipalAmount, new { id="unpaidPrincipalInput" })
+                @Html.ValidationMessageFor(model => model.Transaction.UnpaidPrincipalAmount, "Required", new { id="unpaidPrincipalValidationMessage" })
+            </div>
         </div>
         <p>
-            <input id="btnNext" type="submit" value="Next" class="btn btn-large btn-success" />
+            <input id="btnNext" type="button" onclick="nextClick()" value="Next" class="btn btn-large btn-success" />
         </p>
     </fieldset>
 }
@@ -75,6 +83,80 @@
     @*@Scripts.Render("~/bundles/jqueryval")   *@
 
     <script type="text/javascript">
-        
+        $(document).ready(function () {
+            
+            setTransactionFields();
+            
+            $("#transactionType").change(function () {
+                setTransactionFields();
+            });
+        });
+
+        function hideValidationMessages() {
+            //$('#salesPriceValidationMessage').hide();
+            //$('#originalDebtValidationMessage').hide();
+            //$('#unpaidPrincipalValidationMessage').hide();
+        }
+
+        function setTransactionFields() {
+            var selectedText = $("#transactionType option:selected").text();
+
+            if (selectedText == 'Purchase') {
+                $('#originalDebtAmount').hide();
+                $('#unpaidPrincipal').hide();
+                $('#salePrice').show();
+            }
+            else if (selectedText == 'Refinance') {
+                $('#salePrice').hide();
+                $('#originalDebtAmount').show();
+                $('#unpaidPrincipal').show();
+            }
+            else if (selectedText == 'Reverse') {
+                $('#salePrice').hide();
+                $('#originalDebtAmount').show();
+                $('#unpaidPrincipal').hide();
+            }
+            else {
+
+            }
+        }
+
+        function nextClick() {
+
+            var valid = true;
+            if ($('#salePrice').is(':visible')) {
+                if ($('#salePriceInput').val() == '') {
+                    $('#salesPriceValidationMessage').show();
+                    valid = false;
+                }
+            }
+
+            if ($('#originalDebtAmount').is(':visible')) {
+                if ($('#originalDebtInput').val() == '') {
+                    $('#originalDebtValidationMessage').show();
+                    valid = false;
+                }
+            }
+
+            if ($('#unpaidPrincipal').is(':visible')) {
+                if ($('#unpaidPrincipalInput').val() == '') {
+                    $('#unpaidPrincipalValidationMessage').show();
+                    valid = false;
+                }
+            }
+
+            if ($('#loanAmount').is(':visible')) {
+                if ($('#loanAmountInput').val() == '') {
+                    $('#loanAmountValidationMessage').show();
+                    valid = false;
+                }
+            }
+            
+            if (valid == false) {
+                return;
+            }
+
+            $('form').submit();
+        }
     </script>
 }    

@@ -8,45 +8,58 @@
         <h1>Assessment Complete</h1>
         
         <p></p>
-        <p class="lead">@Model.Message</p>
+        <p class="lead", style="text-align: left;">@Model.Message</p>
 
         <div style="text-align: left">
-            <p>Summary (for debugging purposes):</p>
+            <p>Summary (for testing purposes, will remove):</p>
             <p>
-                Cap Amount:&nbsp;
+                <b>Cap Amount (2.5% of Loan Amount):</b>&nbsp;
                 @Model.Transaction.CapCalculationResult.CapAmount<br />
             </p>
             <br />
             <p>
-                Fees used in initial calculation:&nbsp;&nbsp;@Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total
+                <b>Affiliated Fees Total:</b>&nbsp;&nbsp;@Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total
             </p>
             <br />
             <p>
-                Calculated title fees based on input:<br />
+                <b>Fees that came back from ResWare:</b><br />
                 @foreach (var feeText in Model.Transaction.FeeEstimateResult.GetFeeSummaryList())
                 {
                   @feeText   
                   <br />
                 }
                 <br />
-                Total Title Premium Fees:&nbsp;
-                @Model.Transaction.FeeEstimateResult.GetTitlePremiumsAmount()  
+                <b>Total 1100 Fees from ResWare:</b>&nbsp;
+                @Model.Transaction.FeeEstimateResult.Get1100Fees()  
             </p>
             <p>
-                @Model.Transaction.CapCalculationResult.CapAmount<br />
-                - @Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total<br />
-                - @Model.Transaction.FeeEstimateResult.GetTitlePremiumsAmount() <br />
-                = @(@Model.Transaction.CapCalculationResult.CapAmount - Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total - Model.Transaction.FeeEstimateResult.GetTitlePremiumsAmount())
+                <b>Affiliated Settlement Entered:</b>&nbsp;@Model.Transaction.AffiliatedFee.TotalSettlementFee<br />
+                <b>Affiliated Other Entered (Every affiliated fee but the 1st text box on the affiliated fee screen):&nbsp;</b>@Model.AffiliatedOtherFees<br />
+                <b>Affiliated Total (settlement + other):</b>&nbsp;@Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total<br />
+                <b>Total 1100 Fees from ResWare:</b>&nbsp;@Model.Transaction.FeeEstimateResult.Get1100Fees()  <br /><br />
+                Subtracting Affiliated Settlement From Total ResWare 1100 fees gives you:&nbsp;@Model.ResWare1100MinusAffiliatedSettlement<br /><br />
+                @Model.ResWare1100MinusAffiliatedSettlement is now added to Affiliated Total and subtracted from the Cap<br /><br />
+                Calculation:  <br /> 
+                @Model.Transaction.CapCalculationResult.CapAmount&nbsp;(Cap)<br /> 
+                - @Model.Transaction.CapCalculationResult.CapCalculationResultInitial.Total&nbsp;(Total Affiliated)<br /> 
+                - @Model.ResWare1100MinusAffiliatedSettlement&nbsp;(ResWare 1100 minus Affiliated Settlement)<br />
+                = @Model.CapAmountMinusFeesTotal&nbsp;(Cap - Total Affiliated + (ResWare 1100 - Affiliated Settlement))<br />
             </p>
         </div>
         <br />
-        @if (Model.Passed)
+        @if (Model.Passed || Model.Scenario1 || Model.Scenario2 || Model.Scenario1)
         {
-            @Html.ActionLink("Send To Affiliate", "Index", "Account", null, new { @class="btn btn-large btn-success" })
+            @Html.ActionLink("Email Q-MAT Report", "Index", "Account", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })
+            @Html.ActionLink("Print Q-MAT Report", "Index", "Account", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })    
         }
         else
         {
-            @Html.ActionLink("Send To Madison", "Index", "Account", null, new { @class="btn btn-large btn-success" })    
+            if (Model.Scenario4)
+            {
+                @Html.ActionLink("Send to Approved Provider", "Account", "Index", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })
+                @Html.ActionLink("Email To Third Party", "Index", "Account", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })    
+                @Html.ActionLink("Print Q-MAT Report", "Index", "Account", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })    
+            }
         }
             
         

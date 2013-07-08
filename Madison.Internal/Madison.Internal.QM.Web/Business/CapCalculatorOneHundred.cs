@@ -11,7 +11,7 @@ namespace Madison.Internal.QM.Business
     {
         public CapCalculationResult Calculate(CapCalculationResult capCalculationResult, decimal loanAmount)
         {
-            decimal thresholdPercent = Convert.ToDecimal(.03);
+            decimal thresholdPercent = Convert.ToDecimal(.025);
             capCalculationResult.CapAmount = thresholdPercent * loanAmount;
             capCalculationResult.AmountRemainingUnderCap = capCalculationResult.CapAmount - capCalculationResult.CapCalculationResultInitial.Total;
 

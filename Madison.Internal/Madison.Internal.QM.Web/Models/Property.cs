@@ -13,33 +13,33 @@ namespace Madison.Internal.QM.Web.Models
         public int Id { get; set; }
 
         [Display(Name="Address 1")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Address is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Required.")]
         public string Address1 { get; set; }
 
         [Display(Name = "Address 2")]
         public string Address2 { get; set; }
 
         [Display(Name = "City")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "City is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Required.")]
         public string City { get; set; }
 
         [Display(Name = "County")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "County is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Required.")]
         public string County { get; set; }
 
         [Display(Name = "State")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "State is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Required.")]
         public string State { get; set; }
 
         [Display(Name = "Zip Code")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Zip is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Required.")]
         public string Zip { get; set; }
 
         [ForeignKey("PropertyType")]
         public int PropertyTypeId { get; set; }
 
         [Display(Name = "Property Type")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Property Type is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Required.")]
         public PropertyType PropertyType { get; set; }
     }
 }

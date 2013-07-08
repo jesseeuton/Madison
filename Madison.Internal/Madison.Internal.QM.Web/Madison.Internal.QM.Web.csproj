@@ -354,6 +354,26 @@
     <Compile Include="Migrations\201307020428135_reporterror.Designer.cs">
       <DependentUpon>201307020428135_reporterror.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307041536529_escrowfee.cs" />
+    <Compile Include="Migrations\201307041536529_escrowfee.Designer.cs">
+      <DependentUpon>201307041536529_escrowfee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307051825316_pmi.cs" />
+    <Compile Include="Migrations\201307051825316_pmi.Designer.cs">
+      <DependentUpon>201307051825316_pmi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307051955225_extra.cs" />
+    <Compile Include="Migrations\201307051955225_extra.Designer.cs">
+      <DependentUpon>201307051955225_extra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307060129375_transactionmodelvalidation.cs" />
+    <Compile Include="Migrations\201307060129375_transactionmodelvalidation.Designer.cs">
+      <DependentUpon>201307060129375_transactionmodelvalidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307060144532_morevalidation.cs" />
+    <Compile Include="Migrations\201307060144532_morevalidation.Designer.cs">
+      <DependentUpon>201307060144532_morevalidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AffiliatedFees.cs" />
@@ -481,6 +501,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\TransactionInfo.js" />
     <Content Include="Views\Account\Login.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -648,6 +669,21 @@
     <EmbeddedResource Include="Migrations\201307020428135_reporterror.resx">
       <DependentUpon>201307020428135_reporterror.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307041536529_escrowfee.resx">
+      <DependentUpon>201307041536529_escrowfee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307051825316_pmi.resx">
+      <DependentUpon>201307051825316_pmi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307051955225_extra.resx">
+      <DependentUpon>201307051955225_extra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307060129375_transactionmodelvalidation.resx">
+      <DependentUpon>201307060129375_transactionmodelvalidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307060144532_morevalidation.resx">
+      <DependentUpon>201307060144532_morevalidation.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Madison.ResWare\Madison.ResWare.Domain\Madison.ResWare.Domain.csproj">
@@ -657,6 +693,10 @@
     <ProjectReference Include="..\..\Madison.ResWare\Madison.ResWare.Service\Madison.ResWare.Service.csproj">
       <Project>{ab1215b9-073f-4268-889a-9e0af5cb9a64}</Project>
       <Name>Madison.ResWare.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Madison.Internal.QM.Core\Madison.Internal.QM.Core.csproj">
+      <Project>{cdfa7b5c-80ec-491e-b01a-7fc839c81e77}</Project>
+      <Name>Madison.Internal.QM.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

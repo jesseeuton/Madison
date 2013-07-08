@@ -24,7 +24,7 @@ namespace Madison.Internal.QM.Web.Models
         [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
         public decimal? CreditFee { get; set; }
 
-        [Display(Name = "Mortgage Originator Compansation Amount")]
+        [Display(Name = "Total Third Party Origination Fee.")]
         [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
         public decimal? MortageOriginatorCompensationAmount { get; set; }
 
@@ -44,5 +44,12 @@ namespace Madison.Internal.QM.Web.Models
         [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
         public decimal? LenderFee { get; set; }
 
+        [Display(Name = "Escrow Fee")]
+        [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
+        public decimal? EscrowFee { get; set; }
+
+        [Display(Name = "PMI")]
+        [DataType(DataType.Currency, ErrorMessage = "Must be a number")]
+        public decimal? PMI { get; set; }
     }
 }

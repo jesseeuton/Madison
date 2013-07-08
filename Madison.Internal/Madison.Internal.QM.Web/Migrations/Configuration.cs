@@ -39,12 +39,14 @@ namespace Madison.Internal.QM.Web.Migrations
             context.TransactionTypes.AddOrUpdate(p => p.Name,
                 new TransactionType { Name = "Refinance", ResWareTransactionTypeId = 2, ResWareProductTypeId = 7 },
                 new TransactionType { Name = "Purchase", ResWareTransactionTypeId = 3, ResWareProductTypeId = 4 },
-                new TransactionType { Name = "Reverse" }
+                new TransactionType { Name = "Reverse", ResWareTransactionTypeId = 4, ResWareProductTypeId = 8 },  //TODO:  This is not correct
+                new TransactionType { Name = "Home Equity", ResWareTransactionTypeId = 4, ResWareProductTypeId = 8 },  //TODO:  This is not correct
+                new TransactionType { Name = "Home Equity LOC", ResWareTransactionTypeId = 5, ResWareProductTypeId = 8 }  //TODO:  This is not correct
                 );
 
             context.Endorsements.AddOrUpdate(p => p.Name,
-                new Endorsement { Name = "Planned Unit Development", Selected=false },
-                new Endorsement { Name = "Survey Coverage", Selected = false },
+                new Endorsement { Name = "Planned Unit Development", Selected=true },
+                new Endorsement { Name = "Survey Coverage", Selected = true },
                 new Endorsement { Name = "Condo", Selected = false },
                 new Endorsement { Name = "Variable Rate Endorsement", Selected = false },
                 new Endorsement { Name = "Variable Rate, Negative Am", Selected = false },

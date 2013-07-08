@@ -694,6 +694,10 @@
       <Project>{ab1215b9-073f-4268-889a-9e0af5cb9a64}</Project>
       <Name>Madison.ResWare.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Madison.Internal.QM.Core\Madison.Internal.QM.Core.csproj">
+      <Project>{cdfa7b5c-80ec-491e-b01a-7fc839c81e77}</Project>
+      <Name>Madison.Internal.QM.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

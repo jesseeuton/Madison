@@ -8,10 +8,10 @@
         <h1>Assessment Complete</h1>
         
         <p></p>
-        <p class="lead">@Model.Message</p>
+        <p class="lead", style="text-align: left;">@Model.Message</p>
 
         <div style="text-align: left">
-            <p>Summary (for testing purposes):</p>
+            <p>Summary (for testing purposes, will remove):</p>
             <p>
                 <b>Cap Amount (2.5% of Loan Amount):</b>&nbsp;
                 @Model.Transaction.CapCalculationResult.CapAmount<br />
@@ -47,13 +47,19 @@
             </p>
         </div>
         <br />
-        @if (Model.Passed)
+        @if (Model.Passed || Model.Scenario1 || Model.Scenario2 || Model.Scenario1)
         {
-            @Html.ActionLink("Email Q-MAT Report", "PrintReport", "Transaction", null, new { @class="btn btn-large btn-success" })
+            @Html.ActionLink("Email Q-MAT Report", "Index", "Account", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })
+            @Html.ActionLink("Print Q-MAT Report", "Index", "Account", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })    
         }
         else
         {
-            @Html.ActionLink("Print Q-MAT Report", "EmailReport", "Transaction", null, new { @class="btn btn-large btn-success" })    
+            if (Model.Scenario4)
+            {
+                @Html.ActionLink("Send to Approved Provider", "Account", "Index", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })
+                @Html.ActionLink("Email To Third Party", "Index", "Account", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })    
+                @Html.ActionLink("Print Q-MAT Report", "Index", "Account", new { transactionId = Model.Transaction.Id }, new { @class="btn btn-large btn-success", @style="margin-left: 10px;" })    
+            }
         }
             
         

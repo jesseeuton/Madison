@@ -282,19 +282,48 @@ namespace Madison.Internal.QM.Web.Controllers
             if (viewModel.CapAmountMinusFeesTotal > 0)
             {
                 viewModel.Passed = true;
-                messageBuilder.AppendLine("Based on your data input, this transaction has PASSED the initial QM analysis.");
-                messageBuilder.AppendLine("Click to send data results and premium calculations to Affiliate.");
+                messageBuilder.AppendLine("Q-MAT REPORT HAS PASSED. THIS FILE HAS BEEN ASSIGNED TO THE PRE-APPROVED PROVIDER TO ENSURE QM COMPLIANCE. YOUR REPORT HAS BEEN SENT TO THE LENDER. WHILE YOUR LENDER WILL PERMIT YOUR CHOICE OF TITLE, THE USE OF THE APPROVED PROVIDER WILL ENHANCE YOUR SERVICE AND TURN TIME. PLEASE NOTIFY YOUR LENDER IMMEDIATELY OF YOUT TITLE VENDOR SELECTION BY CHOOSING AN OPTION BELOW.");
                 viewModel.Message = messageBuilder.ToString();
             }
             else
             {
+                //File passed, check the two possible scenarios
+                viewModel.IsAffiliated = GetIsAffiliated(transaction.AffiliatedFee);
+                viewModel.ResWareTitlePremiums = viewModel.Transaction.FeeEstimateResult.GetTitlePremiumsAmount();
                 viewModel.Passed = false;
-                messageBuilder.AppendLine("Based on your data input, this transaction has FAILED the initial QM analysis.");
-                messageBuilder.AppendLine("Click to send to Madison Settlement Services.");
-                viewModel.Message = messageBuilder.ToString();
+
+                if (viewModel.IsAffiliated)
+                {
+                    //Scenario1
+                    if ((viewModel.Transaction.AffiliatedFee.TotalSettlementFee + viewModel.ResWareTitlePremiums) < resware1100Fees)
+                    {
+                        messageBuilder.AppendLine("FILE PASSED IF MADISON SETTLEMENT IS USED. FILE HAS AUTOMATICALLY BEEN SENT TO MADISON SETTLEMENT SERVICES AND THIS REPORT HAS BEEN SENT TO YOUR LENDER. ");
+                        viewModel.Scenario1 = true;
+                        viewModel.Message = messageBuilder.ToString();
+                    }
+                    else if ((viewModel.Transaction.AffiliatedFee.TotalSettlementFee + viewModel.ResWareTitlePremiums) > resware1100Fees)
+                    {
+                        messageBuilder.AppendLine("QMAT REPORT HAS FAILED. THIS FILE MUST BE REVIEWED BY THE LENDER. THIS FILE HAS AUTOMARTICALLY BEEN SENT TO THE LENDER FOR REVIEW. A TITLE ORDER HAS NOT BEEN PLACED BECAUSE THE FILE CANNOT PASS AS SUBMITTED.");
+                        viewModel.Scenario2 = true;
+                        viewModel.Message = messageBuilder.ToString();
+                    }
+                    else
+                    {
+                        viewModel.Scenario4 = true;  //Failure across the board
+                        
+                        messageBuilder.AppendLine("Based on your data input, this transaction has FAILED the initial QM analysis.");
+                        viewModel.Message = messageBuilder.ToString();
+                    }
+                }
             }
 
             return View("AssessmentComplete", viewModel);
+        }
+
+        private bool GetIsAffiliated(AffiliatedFees affiliatedFees)
+        {
+
+            return true;
         }
 
         protected override void Dispose(bool disposing)

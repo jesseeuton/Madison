@@ -15,5 +15,11 @@ namespace Madison.Internal.QM.Web.ViewModels
         public decimal AffiliatedOtherFees { get; set; }
         public decimal ResWare1100MinusAffiliatedSettlement { get; set; }
         public decimal CapAmountMinusFeesTotal { get; set; }
+        public bool IsAffiliated { get; set; }
+        public decimal ResWareTitlePremiums { get; set; } //1103, 1104, 1109
+        public bool Scenario1 { get; set; }  //Affiliated Settlement + ResWare Title PRemiums < ResWare1100
+        public bool Scenario2 { get; set; }  //Aff Sett + Res Tit Prem > ResWare1100
+        public bool Scenario3 { get; set; }  //Pass
+        public bool Scenario4 { get; set; }  //Failure
     }
 }

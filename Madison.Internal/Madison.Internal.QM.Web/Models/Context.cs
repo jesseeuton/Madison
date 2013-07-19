@@ -2,6 +2,14 @@
 
 namespace Madison.Internal.QM.Web.Models
 {
+    public class GeneralContext : DbContext
+    {
+        public GeneralContext()
+            : base("name=GeneralContext")
+        {
+            
+        }
+    }
     public class TransactionContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
@@ -34,5 +42,8 @@ namespace Madison.Internal.QM.Web.Models
         public DbSet<CapCalculationResultInitial> CapCalculationResultsInitial { get; set; }
         public DbSet<CapCalculationResultFinal> CapCalculationResultsFinal { get; set; }
         public DbSet<FeeEstimateResult> FeeEstimateResults { get; set; }
+        public DbSet<DebtIncome> DebtToIncome { get; set; }
+        public DbSet<EmploymentStatus> EmploymentStatus { get; set; }
+        public DbSet<EmploymentLength> EmploymentLength { get; set; }
     }
 }

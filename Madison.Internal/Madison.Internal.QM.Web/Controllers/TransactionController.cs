@@ -259,18 +259,13 @@ namespace Madison.Internal.QM.Web.Controllers
 
             //Subtract the affiliated Settlement from our 1100 fees and add the 1100 fees + total appraisal fees and subtract from the cap.
             //Oh yeah, move this out of the controller.
-            decimal affiliatedSettlementFee = 0;
-            //decimal affiliatedTPO = 0; //add this to the settlement total?
-            //decimal affiliatedPMI = 0; //add this to the settlement total?
-
             viewModel.AffiliatedOtherFees = 0;
-            if (viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total != null)
+
+            if (viewModel.Transaction.AffiliatedFee.TotalSettlementFee != null)
             {
-                if (viewModel.Transaction.AffiliatedFee.TotalSettlementFee != null)
-                {
-                    viewModel.AffiliatedOtherFees = (decimal)viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total - (decimal)viewModel.Transaction.AffiliatedFee.TotalSettlementFee;
-                }
+                viewModel.AffiliatedOtherFees = (decimal)viewModel.Transaction.CapCalculationResult.CapCalculationResultInitial.Total - (decimal)viewModel.Transaction.AffiliatedFee.TotalSettlementFee;
             }
+
 
             if (viewModel.Transaction.AffiliatedFee.TotalSettlementFee != null)
             {
@@ -282,7 +277,7 @@ namespace Madison.Internal.QM.Web.Controllers
             if (viewModel.CapAmountMinusFeesTotal > 0)
             {
                 viewModel.Passed = true;
-                messageBuilder.AppendLine("Q-MAT AASESSMENT HAS PASSED. THIS FILE HAS BEEN SENT TO THE PRE-APPROVED PROVIDER IN ORDER TO ENSURE QM COMPLIANCE. THE QM ASSESSMENT REPORT HAS BEEN SENT TO THE LENDER.  WHILE YOUR LENDER WILL PERMIT YOUR CHOICE OF TITLE, THE USE OF THE APPROVED PROVIDER WILL ENHANCE YOUR SERVICE AND TURN TIME. PLEASE NOTIFY YOUR LENDER IMMEDIATELY OF YOUT TITLE VENDOR SELECTION BY CHOOSING AN OPTION BELOW.");
+                messageBuilder.AppendLine("Q-MAT AASESSMENT HAS PASSED. THIS FILE HAS BEEN SENT TO THE PRE-APPROVED PROVIDER IN ORDER TO ENSURE QM COMPLIANCE. THE QM ASSESSMENT REPORT HAS BEEN SENT TO THE LENDER.  WHILE YOUR LENDER WILL PERMIT YOUR CHOICE OF TITLE, THE USE OF THE APPROVED PROVIDER WILL ENHANCE YOUR SERVICE AND TURN TIME. PLEASE NOTIFY YOUR LENDER IMMEDIATELY OF YOUR TITLE VENDOR SELECTION BY CHOOSING AN OPTION BELOW.");
                 viewModel.Message = messageBuilder.ToString();
             }
             else

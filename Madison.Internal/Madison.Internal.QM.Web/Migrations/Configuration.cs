@@ -6,6 +6,22 @@ namespace Madison.Internal.QM.Web.Migrations
     using System.Linq;
     using Madison.Internal.QM.Web.Models;
 
+    //internal sealed class GeneralConfiguration : DbMigrationsConfiguration<Madison.Internal.QM.Web.Models.GeneralContext>
+    //{
+        
+    //    public GeneralConfiguration()
+    //    {
+    //        AutomaticMigrationsEnabled =false;
+    //    }
+
+    //    protected override void Seed(Madison.Internal.QM.Web.Models.GeneralContext context)
+    //    {
+
+                
+    //    }
+        
+    //}
+
     internal sealed class Configuration : DbMigrationsConfiguration<Madison.Internal.QM.Web.Models.TransactionContext>
     {
         public Configuration()
@@ -77,6 +93,17 @@ namespace Madison.Internal.QM.Web.Migrations
                 new PropertyType { Name = "Manufactured Housing" },
                 new PropertyType { Name = "Unimproved Land" }
                 );
+
+            context.EmploymentLength.AddOrUpdate(p => p.Name,
+                new EmploymentLength { Name = "< 6 Months" },
+                new EmploymentLength { Name = "6 Months - 1 Year" },
+                new EmploymentLength { Name = "1 Year - 3 Years" },
+                new EmploymentLength { Name = "3 Years - 5 Years" },
+                new EmploymentLength { Name = "> 5 Years" });
+
+            context.EmploymentStatus.AddOrUpdate(p => p.Name,
+                new EmploymentStatus { Name = "Employed" },
+                new EmploymentStatus { Name = "Unemployed" });
 
            
         }

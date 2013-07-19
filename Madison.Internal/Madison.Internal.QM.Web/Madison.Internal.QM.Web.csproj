@@ -374,6 +374,10 @@
     <Compile Include="Migrations\201307060144532_morevalidation.Designer.cs">
       <DependentUpon>201307060144532_morevalidation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307192038562_debttoincome.cs" />
+    <Compile Include="Migrations\201307192038562_debttoincome.Designer.cs">
+      <DependentUpon>201307192038562_debttoincome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AffiliatedFees.cs" />
@@ -382,6 +386,7 @@
     <Compile Include="Models\CapCalculationResult.cs" />
     <Compile Include="Models\CompanyRelationship.cs" />
     <Compile Include="Models\Context.cs" />
+    <Compile Include="Models\DebtIncome.cs" />
     <Compile Include="Models\Endorsement.cs" />
     <Compile Include="Models\Fee.cs" />
     <Compile Include="Models\FeeEstimateResult.cs" />
@@ -685,6 +690,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307060144532_morevalidation.resx">
       <DependentUpon>201307060144532_morevalidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307192038562_debttoincome.resx">
+      <DependentUpon>201307192038562_debttoincome.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

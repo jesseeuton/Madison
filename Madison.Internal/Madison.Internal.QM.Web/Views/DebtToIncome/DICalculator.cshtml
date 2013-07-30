@@ -10,107 +10,135 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend></legend>
-        <p>
-            Please complete the questions below for a quick initial evaluation of debt to income ratio . This is not a lender or underwriting approval. This is merely a data collection screen recommended for you prior to using Q-MAT.
-        </p>
-        <p>
-            This screen is intended only as a self evaluation tool to determine, with your expertise, if we can proceed with the affiliate and title insurance evaluations. 
-        </p>
-        <p>
-            Please complete the screen below fully and to the best degree possible for optimal results. 
-        </p>
-        <p>
-            <i>*This data is not collected, stored, or guaranteed. This is a self evaluation tool.</i>
-        </p>
-        <br />
-        <div class="editor-label" style="font-weight: bold">Income Assumptions</div><br />
-        <div class="editor-label">
-            What is the borrowers expected monthly income?
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.MonthlyIncome)
-            @Html.ValidationMessageFor(model => model.MonthlyIncome)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold">Employment Status Assumptions</div><br />
-        <div class="editor-label">
-            What is the borrower’s current employment status?
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("EmploymentStatusId", String.Empty)
-            @Html.ValidationMessageFor(model => model.EmploymentStatusId)
-        </div>
-        <div class="editor-label">
-            How long has the borrower been employed with their current company?
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("EmploymentLengthId", String.Empty)
-            @Html.ValidationMessageFor(model => model.EmploymentLengthId)
-        </div>
-        <div class="editor-label">
-            How long was the borrower employed with their prior company?
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("EmploymentLengthAtPriorCompanyId", String.Empty)
-            @Html.ValidationMessageFor(model => model.EmploymentLengthAtPriorCompanyId)
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold">Expected Monthly Payment</div><br />
-        <div class="editor-label">
-            What is the Expected monthly payment required for this loan?
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ExpectedMonthlyPayment)
-            @Html.ValidationMessageFor(model => model.ExpectedMonthlyPayment)
-        </div>
+      <div id="slides">
+        <div class="slides-container">
+            <div id="1" class="container">
+            <fieldset>
+                <legend></legend>
+                <p style="width: 600px; font-size: small">
+                    Please complete the questions below for a quick initial evaluation of debt to income ratio.
+                    This is not a lender or underwriting approval. This is merely a data collection screen
+                    recommended for you prior to using Q-MAT.
+                </p>
+                <p style="width: 600px; font-size: small">
+                    This screen is intended only as a self evaluation tool to determine, with your expertise,
+                    if we can proceed with the affiliate and title insurance evaluations. 
+                </p>
+                <p style="width: 600px; font-size: small">
+                    Please complete the screen below fully and to the best degree possible for optimal results. 
+                </p>
+                <p style="width: 600px; font-size: small">
+                    <i>*This data is not collected, stored, or guaranteed. This is a self evaluation tool.</i>
+                </p>
+                <br />
+@*                <div class="editor-label" style="font-weight: bold">Income Assumptions</div><br />*@
+                <div class="editor-label" style="font-weight: bold">
+                    What is the borrowers expected monthly income?
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MonthlyIncome)
+                    @Html.ValidationMessageFor(model => model.MonthlyIncome)
+                </div>
+@*                <br />*@
+@*                <div class="editor-label" style="font-weight: bold">Employment Status Assumptions</div><br />*@
+                <div class="editor-label" style="font-weight: bold">
+                    What is the borrower’s current employment status?
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("EmploymentStatusId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.EmploymentStatusId)
+                </div>
+                <div class="editor-label" style="font-weight: bold">
+                    How long has the borrower been employed with their current company?
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("EmploymentLengthId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.EmploymentLengthId)
+                </div>
+                <div class="editor-label" style="font-weight: bold">
+                    How long was the borrower employed with their prior company?
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("EmploymentLengthAtPriorCompanyId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.EmploymentLengthAtPriorCompanyId)
+                </div>   
+            </fieldset>
+            </div>
+            <div id="2" class="container">
+                <fieldset>
+                    <legend></legend>'
+                    <br />
+@*                <div class="editor-label" style="font-weight: bold">Expected Monthly Payment</div><br />*@
+                <div class="editor-label" style="font-weight: bold">
+                    What is the Expected monthly payment required for this loan?
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ExpectedMonthlyPayment)
+                    @Html.ValidationMessageFor(model => model.ExpectedMonthlyPayment)
+                </div>
 
-        <div class="editor-label">
-            Loan Requires PMI&nbsp;&nbsp;@Html.CheckBoxFor(model => model.RequiresPMI, new { id = "pmiCheckBox" })
-        </div>
-        <br />
-        <div id="monthlyPMI">
-            <div class="editor-label">
-                What is the monthly PMI payment requirement?
+                <div class="editor-label" style="font-weight: bold">
+                    Loan Requires PMI&nbsp;&nbsp;@Html.CheckBoxFor(model => model.RequiresPMI, new { id = "pmiCheckBox" })
+                </div>
+@*                <br />*@
+                <div id="monthlyPMI">
+                    <div class="editor-label" style="font-weight: bold">
+                        What is the monthly PMI payment requirement?
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.ExpectedMonthlyPMI)
+                        @Html.ValidationMessageFor(model => model.ExpectedMonthlyPMI)
+                    </div>
+                </div>
+@*                <br />*@
+@*                <div class="editor-label" style="font-weight: bold">Additional Loan Payments</div><br />*@
+                <div class="editor-label" style="font-weight: bold">
+                    There are additional loans on the property&nbsp;&nbsp;@Html.CheckBoxFor(model => model.AdditionalLoansOnProperty, new { id = "additionalLoansCheckBox" })
+                </div>
+                <br />
+                <div id="additionalLoans">
+                    <div class="editor-label" style="font-weight: bold">
+                        What is the total monthly obligation of those loans?
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.TotalMontlyPaymentOfAdditionalLoans)
+                        @Html.ValidationMessageFor(model => model.TotalMontlyPaymentOfAdditionalLoans)
+                    </div>
+                </div>
+                <br />
+@*                <div class="editor-label" style="font-weight: bold">Existing debt obligations</div><br />*@
+                <div class="editor-label" style="font-weight: bold">
+                    Enter total amount per month of the borrowers other monthly debt obligations. (Remember to include child support and alimony.)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MonthlyDebtObligation)
+                    @Html.ValidationMessageFor(model => model.MonthlyDebtObligation)
+                </div>
+                @*<p>
+                    <input type="button" value="Submit" class="btn btn-large btn-success" id="debtToIncomeButton"/>
+                </p>*@
+                </fieldset>
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.ExpectedMonthlyPMI)
-                @Html.ValidationMessageFor(model => model.ExpectedMonthlyPMI)
+            <div id="3">
+                <fieldset>
+                    <legend></legend>
+                        Done.  Reset Button and QMAT Assessment button.
+                </fieldset>
             </div>
         </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold">Additional Loan Payments</div><br />
-        <div class="editor-label">
-            There are additional loans on the property&nbsp;&nbsp;@Html.CheckBoxFor(model => model.AdditionalLoansOnProperty, new { id = "additionalLoansCheckBox" })
-        </div>
-        <br />
-        <div id="additionalLoans">
-            <div class="editor-label">
-                What is the total monthly obligation of those loans?
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.TotalMontlyPaymentOfAdditionalLoans)
-                @Html.ValidationMessageFor(model => model.TotalMontlyPaymentOfAdditionalLoans)
-            </div>
-        </div>
-        <br />
-        <div class="editor-label" style="font-weight: bold">Existing debt obligations</div><br />
-        <div class="editor-label">
-            Enter total amount per month of the borrowers other monthly debt obligations. (Remember to include child support and alimony.)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.MonthlyDebtObligation)
-            @Html.ValidationMessageFor(model => model.MonthlyDebtObligation)
-        </div>
-        <p>
-            <input type="button" value="Submit" class="btn btn-large btn-success" id="debtToIncomeButton"/>
-        </p>
-    </fieldset>
+        <nav class="slides-navigation">
+            <a id="previousSlide" href="#" class="btn btn-large btn-success prev">Previous</a>
+            <a id="nextslide" href="#" class="btn btn-large btn-success next">Next</a>
+        </nav>
+    </div>
+    
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/slider/jquery.easing.1.3.js")
+    @Scripts.Render("~/Scripts/slider/jquery.animate-enhanced.min.js")
+    @Scripts.Render("~/Scripts/slider/jquery.superslides.js")
     
     <script type="text/javascript">
         $(document).ready(function () {
@@ -119,6 +147,11 @@
 
             $('#debtToIncomeButton').click(function () {
                 $('form').submit()
+            });
+
+            $('#slides').superslides({
+                hashchange: true,
+                pagination: false
             });
         });
 

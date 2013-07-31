@@ -15,19 +15,19 @@
             <div id="1" class="container">
             <fieldset>
                 <legend></legend>
-                <p style="width: 600px; font-size: small">
+                <p style="width: 590px; font-size: small">
                     Please complete the questions below for a quick initial evaluation of debt to income ratio.
                     This is not a lender or underwriting approval. This is merely a data collection screen
                     recommended for you prior to using Q-MAT.
                 </p>
-                <p style="width: 600px; font-size: small">
+                <p style="width: 590px; font-size: small">
                     This screen is intended only as a self evaluation tool to determine, with your expertise,
                     if we can proceed with the affiliate and title insurance evaluations. 
                 </p>
-                <p style="width: 600px; font-size: small">
+                <p style="width: 590px; font-size: small">
                     Please complete the screen below fully and to the best degree possible for optimal results. 
                 </p>
-                <p style="width: 600px; font-size: small">
+                <p style="width: 590px; font-size: small">
                     <i>*This data is not collected, stored, or guaranteed. This is a self evaluation tool.</i>
                 </p>
                 <br />
@@ -36,7 +36,7 @@
                     What is the borrowers expected monthly income?
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.MonthlyIncome)
+                    @Html.TextBoxFor(model => model.MonthlyIncome, new { id = "monthlyIncome" })
                     @Html.ValidationMessageFor(model => model.MonthlyIncome)
                 </div>
 @*                <br />*@
@@ -45,52 +45,52 @@
                     What is the borrower’s current employment status?
                 </div>
                 <div class="editor-field">
-                    @Html.DropDownList("EmploymentStatusId", String.Empty)
+                    @Html.DropDownListFor(model => model.EmploymentStatusId, ViewBag.EmploymentStatus as SelectList, new { id="currentEmploymentStatus" })
                     @Html.ValidationMessageFor(model => model.EmploymentStatusId)
                 </div>
                 <div class="editor-label" style="font-weight: bold">
                     How long has the borrower been employed with their current company?
                 </div>
                 <div class="editor-field">
-                    @Html.DropDownList("EmploymentLengthId", String.Empty)
+                    @Html.DropDownListFor(model => model.EmploymentLengthId, ViewBag.EmploymentLength as SelectList, new { id="currentEmploymentLength" })
                     @Html.ValidationMessageFor(model => model.EmploymentLengthId)
                 </div>
                 <div class="editor-label" style="font-weight: bold">
                     How long was the borrower employed with their prior company?
                 </div>
                 <div class="editor-field">
-                    @Html.DropDownList("EmploymentLengthAtPriorCompanyId", String.Empty)
+                    @Html.DropDownListFor(model => model.EmploymentLengthAtPriorCompanyId, ViewBag.EmploymentLength as SelectList, new { id="priorEmploymentLength" })
                     @Html.ValidationMessageFor(model => model.EmploymentLengthAtPriorCompanyId)
                 </div>   
             </fieldset>
             </div>
             <div id="2" class="container">
                 <fieldset>
-                    <legend></legend>'
+                    <legend></legend>
                     <br />
 @*                <div class="editor-label" style="font-weight: bold">Expected Monthly Payment</div><br />*@
                 <div class="editor-label" style="font-weight: bold">
                     What is the Expected monthly payment required for this loan?
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.ExpectedMonthlyPayment)
+                   @Html.TextBoxFor(model => model.ExpectedMonthlyPayment, new { id = "expectedMonthlyPayment" })
                     @Html.ValidationMessageFor(model => model.ExpectedMonthlyPayment)
                 </div>
-
+                <br />
                 <div class="editor-label" style="font-weight: bold">
                     Loan Requires PMI&nbsp;&nbsp;@Html.CheckBoxFor(model => model.RequiresPMI, new { id = "pmiCheckBox" })
                 </div>
-@*                <br />*@
+                <br />
                 <div id="monthlyPMI">
                     <div class="editor-label" style="font-weight: bold">
                         What is the monthly PMI payment requirement?
                     </div>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.ExpectedMonthlyPMI)
+                        @Html.TextBoxFor(model => model.ExpectedMonthlyPMI, new { id = "expectedMonthlyPMI" })
                         @Html.ValidationMessageFor(model => model.ExpectedMonthlyPMI)
                     </div>
                 </div>
-@*                <br />*@
+                <br />
 @*                <div class="editor-label" style="font-weight: bold">Additional Loan Payments</div><br />*@
                 <div class="editor-label" style="font-weight: bold">
                     There are additional loans on the property&nbsp;&nbsp;@Html.CheckBoxFor(model => model.AdditionalLoansOnProperty, new { id = "additionalLoansCheckBox" })
@@ -101,34 +101,34 @@
                         What is the total monthly obligation of those loans?
                     </div>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.TotalMontlyPaymentOfAdditionalLoans)
+                        @Html.TextBoxFor(model => model.TotalMontlyPaymentOfAdditionalLoans, new { id = "totalMontlyPaymentOfAdditionalLoans" })
                         @Html.ValidationMessageFor(model => model.TotalMontlyPaymentOfAdditionalLoans)
                     </div>
                 </div>
                 <br />
 @*                <div class="editor-label" style="font-weight: bold">Existing debt obligations</div><br />*@
                 <div class="editor-label" style="font-weight: bold">
-                    Enter total amount per month of the borrowers other monthly debt obligations. (Remember to include child support and alimony.)
+                    Enter total amount per month of the borrowers other monthly debt obligations.<br /> 
+                    (Remember to include child support and alimony.)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.MonthlyDebtObligation)
+                    @Html.TextBoxFor(model => model.MonthlyDebtObligation, new { id = "monthlyDebtObligation" })
                     @Html.ValidationMessageFor(model => model.MonthlyDebtObligation)
                 </div>
-                @*<p>
-                    <input type="button" value="Submit" class="btn btn-large btn-success" id="debtToIncomeButton"/>
-                </p>*@
                 </fieldset>
             </div>
             <div id="3">
                 <fieldset>
                     <legend></legend>
-                        Done.  Reset Button and QMAT Assessment button.
+                        
                 </fieldset>
             </div>
         </div>
         <nav class="slides-navigation">
             <a id="previousSlide" href="#" class="btn btn-large btn-success prev">Previous</a>
-            <a id="nextslide" href="#" class="btn btn-large btn-success next">Next</a>
+            <a id="nextSlide" href="#" class="btn btn-large btn-success next">Next</a>
+            <input type="button" id="startOver" class="btn btn-large btn-success" value="Start Over"/>
+            <input type="button" id="home" class="btn btn-large btn-success" value="Done"/>
         </nav>
     </div>
     
@@ -144,9 +144,10 @@
         $(document).ready(function () {
             setFormControlVisibility();
             setFormEventHandlers();
+            setNavEventHandlers();
 
             $('#debtToIncomeButton').click(function () {
-                $('form').submit()
+                $('form').submit();
             });
 
             $('#slides').superslides({
@@ -155,9 +156,71 @@
             });
         });
 
+        function setNavEventHandlers() {
+            $('#previousSlide').click(prevSlideClick);
+            $('#nextSlide').click(nextSlideClick);
+            $('#startOver').click(startOver);
+        }
+
         function setFormControlVisibility() {
             $('#monthlyPMI').hide();
             $('#additionalLoans').hide();
+            $('#previousSlide').hide(); //default the previous slide button to not visible (they should only be able to move forward).
+            $('#startOver').hide();
+            $('#home').hide();
+        }
+
+        function prevSlideClick() {
+            $('#nextSlide').show();
+            $('#startOver').hide();
+            $('#home').hide();
+            if ($('#slides').superslides('current') == 1) {
+                $('#previousSlide').hide();
+            }
+            else {
+                $('#previousSlide').show();
+            }
+        }
+
+        function nextSlideClick() {
+            $('#previousSlide').show();
+            if ($('#slides').superslides('current') == 1) {
+                $('#nextSlide').hide();
+                $('#startOver').show();
+                $('#home').show();
+            }
+            else {
+                $('#nextSlide').show();
+                $('#startOver').hide();
+                $('#home').hide();
+            }
+        }
+
+        function startOver() {
+            $('#previousSlide').hide();
+            $('#startOver').hide();
+            $('#home').hide();
+            $('#next').show();
+
+            
+            //clear all slide variables
+            //also get the employment info.
+
+            $('#monthlyIncome').text = '';
+            $('#expectedMonthlyPayment').text = '';
+            $('#pmiCheckBox').checked = 0;
+            $('#expectedMonthlyPMI').text = ''
+            $('#additionalLoansCheckBox').checked = 0
+            $('#totalMontlyPaymentOfAdditionalLoans').text = ''
+            $('#monthlyDebtObligation').text = ''
+            $('#currentEmploymentLength').val('');
+            $('#currentEmploymentStatus').val('');
+            $('#priorEmploymentLength').val('');
+            
+            setMonthlyPMIVisibility();
+            setAdditionalLoansVisibility();
+
+            $('#slides').superslides('animate', 0);
         }
 
         function setFormEventHandlers() {

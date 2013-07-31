@@ -592,7 +592,7 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Report\QMATReport.cshtml" />
-    <Content Include="Views\DebtToIncome\DICalculator.cshtml" />
+    <Content Include="Views\DebtToIncome\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -666,6 +666,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307011925289_capcalculationtables.resx">
       <DependentUpon>201307011925289_capcalculationtables.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307011940510_capcalculationtables_edit.resx">
       <DependentUpon>201307011940510_capcalculationtables_edit.cs</DependentUpon>

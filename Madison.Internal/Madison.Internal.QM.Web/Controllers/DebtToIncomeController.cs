@@ -13,11 +13,11 @@ namespace Madison.Internal.QM.Web.Controllers
     {
         private TransactionContext db = new TransactionContext();
 
-        public ActionResult DICalculator()
+        public ActionResult Index()
         {
-            ViewBag.EmploymentStatusId = new SelectList(db.EmploymentStatus, "Id", "Name");
-            ViewBag.EmploymentLengthId = new SelectList(db.EmploymentLength, "Id", "Name");
-            ViewBag.EmploymentLengthAtPriorCompanyId = new SelectList(db.EmploymentLength, "Id", "Name");
+            ViewBag.EmploymentStatus = new SelectList(db.EmploymentStatus, "Id", "Name");
+            ViewBag.EmploymentLength = new SelectList(db.EmploymentLength, "Id", "Name");
+            ViewBag.EmploymentLengthAtPriorCompany = new SelectList(db.EmploymentLength, "Id", "Name");
 
             return View();
         }

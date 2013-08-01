@@ -221,7 +221,7 @@
         }
 
         function getDebtToIncomePercentage(income, debt) {
-            if ((debt * 1) == 0) {
+            if ((income * 1) == 0) {
                 return '100%';
             }
             
@@ -271,7 +271,6 @@
         }
 
         function startOver() {
-
             $('#slides').superslides('animate', 0);
 
             $('#previousSlide').hide();
@@ -280,15 +279,18 @@
             $('#nextSlide').show();
 
             $('#monthlyIncome').val('');
-            $('#expectedMonthlyPayment').text = '';
-            $('#pmiCheckBox').checked = 0;
-            $('#expectedMonthlyPMI').text = ''
-            $('#additionalLoansCheckBox').checked = 0
-            $('#totalMontlyPaymentOfAdditionalLoans').text = ''
-            $('#monthlyDebtObligation').text = ''
+            $('#expectedMonthlyPayment').val('');
+            $('#pmiCheckBox').attr('checked', false);
+            $('#expectedMonthlyPMI').val('')
+            $('#additionalLoansCheckBox').attr('checked', false);
+            $('#totalMontlyPaymentOfAdditionalLoans').val('')
+            $('#monthlyDebtObligation').val('')
             $('#currentEmploymentLength').val('');
             $('#currentEmploymentStatus').val('');
-            $('#priorEmploymentLength').val('');    
+            $('#priorEmploymentLength').val('');
+
+            $('#monthlyPMI').hide();
+            $('#additionalLoans').hide();
         }
 
         function setFormEventHandlers() {

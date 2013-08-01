@@ -23,7 +23,7 @@ namespace Madison.Internal.QM.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult DICalculator(DebtIncome debtIncome)
+        public ActionResult Index(DebtIncome debtIncome)
         {
 
 

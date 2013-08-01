@@ -120,7 +120,25 @@
             <div id="3">
                 <fieldset>
                     <legend></legend>
-                        
+                    <h3>Results</h3>
+                    <table>
+                        <tr>
+                            <td class="editor-label" style="font-weight: bold; width: 250px;">Monthly Income:&nbsp;</td>
+                            <td><div id="totalMonthlyIncome"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="editor-label" style="font-weight: bold; width: 250px;">Debt Obligations:&nbsp;</td>
+                            <td style="vertical-align: top"><div id="totalMonthlyDebt"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="editor-label" style="font-weight: bold; width: 250px;">Debt obligations, estimated monthly payment, and PMI:&nbsp;</td>
+                            <td><div id="totalDebtPaymentsPMI"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="editor-label" style="font-weight: bold; width: 250px;">Debt to Income Percentage:&nbsp;</td>
+                            <td><div id="actualDebtIncomePercentage" ></div></td>
+                        </tr>
+                    </table>
                 </fieldset>
             </div>
         </div>
@@ -128,14 +146,14 @@
             <a id="previousSlide" href="#" class="btn btn-large btn-success prev">Previous</a>
             <a id="nextSlide" href="#" class="btn btn-large btn-success next">Next</a>
             <input type="button" id="startOver" class="btn btn-large btn-success" value="Start Over"/>
-            <input type="button" id="home" class="btn btn-large btn-success" value="Done"/>
+            <input type="submit" id="done" class="btn btn-large btn-success" value="Done"/>
         </nav>
     </div>
     
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@*    @Scripts.Render("~/bundles/jqueryval")*@
     @Scripts.Render("~/Scripts/slider/jquery.easing.1.3.js")
     @Scripts.Render("~/Scripts/slider/jquery.animate-enhanced.min.js")
     @Scripts.Render("~/Scripts/slider/jquery.superslides.js")
@@ -146,7 +164,7 @@
             setFormEventHandlers();
             setNavEventHandlers();
 
-            $('#debtToIncomeButton').click(function () {
+            $('#done').click(function () {
                 $('form').submit();
             });
 
@@ -155,6 +173,61 @@
                 pagination: false
             });
         });
+
+        function calculateResults() {
+            var income = $('#monthlyIncome').val();
+            if (income == null || income == '') {
+                income = 0;
+            }
+            $('#totalMonthlyIncome').text('$' + income);
+
+            var debt = getDebt();
+            $('#totalMonthlyDebt').text('$' + debt);
+
+            var debtAndPaymentsandPMI = getDebtAndEstimatedPaymentsAndEstimatedPMI();
+            $('#totalDebtPaymentsPMI').text('$' + debtAndPaymentsandPMI);
+
+            var debtToIncomePercentage = getDebtToIncomePercentage(income, debtAndPaymentsandPMI);
+            $('#actualDebtIncomePercentage').text(debtToIncomePercentage);
+        }
+
+
+        function getDebt() {
+            var debt = 0;
+            if ($('#monthlyDebtObligation').val() != null && $('#monthlyDebtObligation').val().length > 0) {
+                debt = $('#monthlyDebtObligation').val() * 1;
+            }
+
+            if ($('#totalMontlyPaymentOfAdditionalLoans').val() != null && $('#totalMontlyPaymentOfAdditionalLoans').val().length > 0) {
+                debt += $('#totalMontlyPaymentOfAdditionalLoans').val() * 1;
+            }
+
+            return debt;
+        }
+
+        function getDebtAndEstimatedPaymentsAndEstimatedPMI() {
+            var debt = 0;
+            if ($('#expectedMonthlyPayment').val() != null && $('#expectedMonthlyPayment').val().length > 0) {
+                debt += $('#expectedMonthlyPayment').val() * 1;
+            }
+
+            if ($('#expectedMonthlyPMI').val() != null && $('#expectedMonthlyPMI').val().length > 0) {
+                debt += $('#expectedMonthlyPMI').val() * 1;
+            }
+
+            debt += getDebt();
+
+            return debt;
+        }
+
+        function getDebtToIncomePercentage(income, debt) {
+            if ((debt * 1) == 0) {
+                return '100%';
+            }
+            
+            var debtToIncomePercentage = ((debt * 1) / (income * 1)) * 100;
+            return debtToIncomePercentage + '%';
+        }
 
         function setNavEventHandlers() {
             $('#previousSlide').click(prevSlideClick);
@@ -167,13 +240,13 @@
             $('#additionalLoans').hide();
             $('#previousSlide').hide(); //default the previous slide button to not visible (they should only be able to move forward).
             $('#startOver').hide();
-            $('#home').hide();
+            $('#done').hide();
         }
 
         function prevSlideClick() {
             $('#nextSlide').show();
             $('#startOver').hide();
-            $('#home').hide();
+            $('#done').hide();
             if ($('#slides').superslides('current') == 1) {
                 $('#previousSlide').hide();
             }
@@ -187,26 +260,26 @@
             if ($('#slides').superslides('current') == 1) {
                 $('#nextSlide').hide();
                 $('#startOver').show();
-                $('#home').show();
+                $('#done').show();
+                calculateResults();
             }
             else {
                 $('#nextSlide').show();
                 $('#startOver').hide();
-                $('#home').hide();
+                $('#done').hide();
             }
         }
 
         function startOver() {
+
+            $('#slides').superslides('animate', 0);
+
             $('#previousSlide').hide();
             $('#startOver').hide();
-            $('#home').hide();
-            $('#next').show();
+            $('#done').hide();
+            $('#nextSlide').show();
 
-            
-            //clear all slide variables
-            //also get the employment info.
-
-            $('#monthlyIncome').text = '';
+            $('#monthlyIncome').val('');
             $('#expectedMonthlyPayment').text = '';
             $('#pmiCheckBox').checked = 0;
             $('#expectedMonthlyPMI').text = ''
@@ -215,12 +288,7 @@
             $('#monthlyDebtObligation').text = ''
             $('#currentEmploymentLength').val('');
             $('#currentEmploymentStatus').val('');
-            $('#priorEmploymentLength').val('');
-            
-            setMonthlyPMIVisibility();
-            setAdditionalLoansVisibility();
-
-            $('#slides').superslides('animate', 0);
+            $('#priorEmploymentLength').val('');    
         }
 
         function setFormEventHandlers() {

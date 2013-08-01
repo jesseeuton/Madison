@@ -31,9 +31,7 @@ namespace Madison.Internal.QM.Web.Controllers
             BorrowerViewModel viewModel = new BorrowerViewModel();
             
             viewModel.PropertyTypes = db.PropertyTypes.ToList();
-            viewModel.Property = TestModelBuilder.BuildPropertyInfoForTest();
-            viewModel.Borrower = TestModelBuilder.BuildBorrowerForTest();
-
+            
             return View("PropertyInfo", viewModel);
         }
 
@@ -277,7 +275,7 @@ namespace Madison.Internal.QM.Web.Controllers
             if (viewModel.CapAmountMinusFeesTotal > 0)
             {
                 viewModel.Passed = true;
-                messageBuilder.AppendLine("Q-MAT AASESSMENT HAS PASSED. THIS FILE HAS BEEN SENT TO THE PRE-APPROVED PROVIDER IN ORDER TO ENSURE QM COMPLIANCE. THE QM ASSESSMENT REPORT HAS BEEN SENT TO THE LENDER.  WHILE YOUR LENDER WILL PERMIT YOUR CHOICE OF TITLE, THE USE OF THE APPROVED PROVIDER WILL ENHANCE YOUR SERVICE AND TURN TIME. PLEASE NOTIFY YOUR LENDER IMMEDIATELY OF YOUR TITLE VENDOR SELECTION BY CHOOSING AN OPTION BELOW.");
+                messageBuilder.AppendLine("The Q-MAT ASSESSMENT HAS PASSED. THIS FILE HAS BEEN SENT TO THE PRE-APPROVED PROVIDER IN ORDER TO ENSURE Q-MAT COMPLIANCE. THE Q-MAT REPORT HAS BEEN SENT TO THE LENDER.  WHILE YOUR LENDER WILL PERMIT YOUR CHOICE OF TITLE, THE USE OF THE APPROVED PROVIDER WILL ENHANCE YOUR SERVICE AND TURN TIME. PLEASE NOTIFY YOUR LENDER IMMEDIATELY OF YOUR TITLE VENDOR SELECTION BY CHOOSING AN OPTION BELOW.");
                 viewModel.Message = messageBuilder.ToString();
             }
             else
@@ -292,13 +290,13 @@ namespace Madison.Internal.QM.Web.Controllers
                     //Scenario1
                     if ((viewModel.Transaction.AffiliatedFee.TotalSettlementFee + viewModel.ResWareTitlePremiums) < resware1100Fees)
                     {
-                        messageBuilder.AppendLine("Q-MAT ASSESSMENT HAS PASSED. THIS FILE HAS BEEN ASSIGNED TO THE PRE-APPROVED TITLE AND SETTLEMENT PROVIDER TO ENSURE QM COMPLIANCE. THE QM ASSESSMENT REPORT HAS BEEN SENT TO THE LENDER.  WHILE YOUR LENDER WILL PERMIT YOUR CHOICE OF TITLE, THE USE OF THE APPROVED PROVIDER WILL ENHANCE YOUR SERVICE AND TURN TIME. PLEASE NOTIFY YOUR LENDER IMMEDIATELY IF YOU ARE CHOOSING AN ALTERNATE TITLE AND SETTLEMENT VENDOR. CHANGES IN TITLE AND SETTLEMENT VENDOR SELECTION MAY NOT BE APPROVED BY THE LENDER IF NOT RECEIVED IMMEDIATELY VIA THE NOTFICATION CHANNEL PROVIDED BELOW.");
+                        messageBuilder.AppendLine("The Q-MAT ASSESSMENT HAS PASSED. THIS FILE HAS BEEN ASSIGNED TO THE PRE-APPROVED TITLE AND SETTLEMENT PROVIDER TO ENSURE QM COMPLIANCE. THE QM ASSESSMENT REPORT HAS BEEN SENT TO THE LENDER.  WHILE YOUR LENDER WILL PERMIT YOUR CHOICE OF TITLE, THE USE OF THE APPROVED PROVIDER WILL ENHANCE YOUR SERVICE AND TURN TIME. PLEASE NOTIFY YOUR LENDER IMMEDIATELY IF YOU ARE CHOOSING AN ALTERNATE TITLE AND SETTLEMENT VENDOR. CHANGES IN TITLE AND SETTLEMENT VENDOR SELECTION MAY NOT BE APPROVED BY THE LENDER IF NOT RECEIVED IMMEDIATELY VIA THE NOTFICATION CHANNEL PROVIDED BELOW.");
                         viewModel.Scenario1 = true;
                         viewModel.Message = messageBuilder.ToString();
                     }
                     else if ((viewModel.Transaction.AffiliatedFee.TotalSettlementFee + viewModel.ResWareTitlePremiums) > resware1100Fees)
                     {
-                        messageBuilder.AppendLine("QMAT ASSESSMENT HAS FAILED. THIS FILE MUST BE REVIEWED BY THE LENDER. THE QM ASSESSMENT REPORT HAS BEEN SENT TO THE LENDER FOR REVIEW. A TITLE ORDER HAS NOT BEEN PLACED BECAUSE THE FILE CANNOT PASS AS SUBMITTED.");
+                        messageBuilder.AppendLine("The Q-MAT ASSESSMENT HAS FAILED. THIS FILE MUST BE REVIEWED BY THE LENDER. THE Q-MAT REPORT HAS BEEN SENT TO THE LENDER FOR REVIEW. A TITLE ORDER HAS NOT BEEN PLACED BECAUSE THE FILE CANNOT PASS AS SUBMITTED.");
                         viewModel.Scenario2 = true;
                         viewModel.Message = messageBuilder.ToString();
                     }
@@ -306,7 +304,7 @@ namespace Madison.Internal.QM.Web.Controllers
                     {
                         viewModel.Scenario4 = true;  //Failure across the board
                         
-                        messageBuilder.AppendLine("BASED ON THE DATA YOUR PROVIDED THE INITIAL Q-MAT ANALYSIS HAS FAILED.");
+                        messageBuilder.AppendLine("BASED ON THE DATA YOU PROVIDED THE INITIAL Q-MAT ANALYSIS HAS FAILED.");
                         viewModel.Message = messageBuilder.ToString();
                     }
                 }
